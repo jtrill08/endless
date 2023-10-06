@@ -1,4 +1,3 @@
-With images but categories not organised: 
 const factContainer = document.getElementById('fact-container');
 const categoryNav = document.querySelector('.category-nav');
 let scrolling = false;
@@ -23,7 +22,7 @@ async function fetchRandomFact(category) {
 
         const response = await fetch(apiUrl);
         const data = await response.json();
-        return data;
+        return data.extract;
     } catch (error) {
         console.error('Error fetching data:', error);
     }
@@ -42,19 +41,10 @@ function containsInterestingKeyword(fact) {
 }
 
 async function displayRandomFact() {
-    const factData = await fetchRandomFact();
+    const fact = await fetchRandomFact();
     const factElement = document.createElement('div');
     factElement.classList.add('fact-card'); // Add class for card styling
-    factElement.textContent = factData.extract;
-
-    if (factData.thumbnail && factData.thumbnail.source) {
-        const imageElement = document.createElement('img');
-        imageElement.src = factData.thumbnail.source;
-        imageElement.alt = 'Fact Image';
-        imageElement.classList.add('fact-image'); // Add the 'fact-image' class
-        factElement.appendChild(imageElement);
-    }
-
+    factElement.textContent = fact;
     factContainer.appendChild(factElement);
 
     // Scroll to the newly added fact
@@ -83,4 +73,3 @@ document.getElementById('toggle-dark-mode-button').addEventListener('click', tog
 
 // Initial loading
 displayRandomFact();
-
