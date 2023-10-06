@@ -1,8 +1,9 @@
+With images but categories not organised: 
 const factContainer = document.getElementById('fact-container');
 const categoryNav = document.querySelector('.category-nav');
 let scrolling = false;
 let isDarkMode = false;
-let selectedCategory = 'Art'; // Initialize with the desired category
+let selectedCategory = null; // Initialize with no category selected
 
 function toggleDarkMode() {
     isDarkMode = !isDarkMode;
@@ -15,51 +16,40 @@ async function fetchRandomFact(category) {
     try {
         let apiUrl = 'https://en.wikipedia.org/api/rest_v1/page/random/summary';
 
-        const response = await fetch(apiUrl);
-        const data = await response.json();
-
-        if (category && !containsInterestingKeyword(data.extract, category)) {
-            // If a category is specified and the article doesn't contain the category keyword, retry.
-            return fetchRandomFact(category);
+        // If a category is specified, add it to the API URL
+        if (category) {
+            apiUrl += `?category=${category}`;
         }
 
-        return {
-            extract: data.extract,
-            image: data.thumbnail ? data.thumbnail.source : null
-        };
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+        return data;
     } catch (error) {
         console.error('Error fetching data:', error);
     }
 }
 
-function containsInterestingKeyword(fact, category) {
-    // Modify this function to check if the fact contains keywords related to art within the specified category.
+function containsInterestingKeyword(fact) {
     const lowercasedFact = fact.toLowerCase();
-
-    // Keywords related to art.
-    const artistKeywords = ['painter', 'artist', 'artwork', 'canvas', 'portrait'];
-
-    for (const keyword of artistKeywords) {
-        if (lowercasedFact.includes(keyword) && lowercasedFact.includes(category.toLowerCase())) {
+    
+    for (const keyword of interestingKeywords) {
+        if (lowercasedFact.includes(keyword)) {
             return true;
         }
     }
-
+    
     return false;
 }
 
 async function displayRandomFact() {
-    const startTime = performance.now(); // Record start time
-
-    const factData = await fetchRandomFact(selectedCategory);
-
+    const factData = await fetchRandomFact();
     const factElement = document.createElement('div');
     factElement.classList.add('fact-card'); // Add class for card styling
     factElement.textContent = factData.extract;
 
-    if (factData.image) {
+    if (factData.thumbnail && factData.thumbnail.source) {
         const imageElement = document.createElement('img');
-        imageElement.src = factData.image;
+        imageElement.src = factData.thumbnail.source;
         imageElement.alt = 'Fact Image';
         imageElement.classList.add('fact-image'); // Add the 'fact-image' class
         factElement.appendChild(imageElement);
@@ -69,13 +59,6 @@ async function displayRandomFact() {
 
     // Scroll to the newly added fact
     factContainer.scrollTop = factContainer.scrollHeight;
-
-    const endTime = performance.now(); // Record end time
-    const timeElapsed = endTime - startTime; // Calculate time elapsed
-    console.log(`Time to display fact: ${timeElapsed.toFixed(2)} milliseconds`);
-
-    // Start loading the next fact immediately
-    displayRandomFact();
 }
 
 // Function to handle scroll events (modified)
@@ -86,7 +69,9 @@ function handleScroll(event) {
     if (!scrollUp) {
         scrolling = true;
         displayRandomFact();
-        scrolling = false;
+        setTimeout(() => {
+            scrolling = false;
+        }, 1000); // Adjust the delay (in milliseconds) as needed to control the scrolling speed
     }
 }
 
@@ -98,3 +83,4 @@ document.getElementById('toggle-dark-mode-button').addEventListener('click', tog
 
 // Initial loading
 displayRandomFact();
+
