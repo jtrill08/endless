@@ -1,0 +1,65 @@
+/* styles.css */
+:root {
+    --background-light: #f7f7f7;
+    --background-dark: #121212;
+    --text-light: #000000;
+    --text-dark: #ffffff;
+    --container-background: #ffffff;
+    --border-color: #333333;
+    --peek-background: #f0f0f0;
+    --fact-card-background: #ffffff;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: var(--background-light); /* Default to light mode background */
+    overflow: hidden; /* Hide default scrollbar */
+}
+
+.fact-container {
+    font-size: 10px;
+    text-align: center;
+    max-width: 30%;
+    padding: 0; /* Remove vertical padding */
+    background-color: var(--container-background); /* Default to light mode background */
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow-y: scroll; /* Enable vertical scrolling */
+    scroll-snap-type: y mandatory; /* Enable scroll snap */
+    height: 80vh; /* Set the container height to viewport height */
+}
+
+/* styles.css */
+/* ... (other styles) */
+
+.fact-card {
+    margin: 10% auto;
+    padding: 20px;
+    background-color: var(--fact-card-background); /* Default to light mode background */
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    scroll-snap-align: start; /* Snap each card to the start of the container */
+    display: flex; /* Use flexbox to control layout */
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center items horizontally */
+    height: 60vh;
+}
+
+
+.fact-card img {
+    max-width: 100%; /* Ensure the image scales proportionally */
+    max-height: 200px; /* Set a maximum height for images */
+    margin-bottom: 10px; /* Add some spacing between text and image */
+}
+
+.fact-card p {
+    margin: 0; /* Remove margin for the text */
+    overflow: auto; /* Enable text scrolling if it overflows */
+}
+
