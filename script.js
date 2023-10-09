@@ -302,5 +302,5 @@ categoryButtons.forEach(button => {
     });
 });
 
-// Initial load
+// Initial load 
 loadNextFacts();
