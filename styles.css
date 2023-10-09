@@ -117,4 +117,5 @@ body::-webkit-scrollbar {
     max-width: 45vh;
     flex-direction: column;
     justify-content: space-between; /* Space between image and text */
+    
 }
