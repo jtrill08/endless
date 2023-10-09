@@ -7,10 +7,19 @@
     <title>Endless Wikipedia Facts</title>
 </head>
 <body>
-    <div class="fact-container" id="fact-container">
-        <!-- Facts will be displayed here -->
-    </div>
-    <button id="toggle-dark-mode-button">Toggle Dark Mode</button> <!-- Add this button -->
-    <script src="script.js"></script>
+<div class="category-nav">
+    <button id="home-button">Home</button>
+    <button class="category-button" data-category="Arts">Art</button>
+    <button class="category-button" data-category="Science">Science</button>
+    <button class="category-button" data-category="Geography">Geography</button>
+    <button class="category-button" data-category="History">History</button>
+</div>
+
+<div class="fact-container" id="fact-container">
+
+</div>
+<div class="peek" id="peek"></div>
+<button id="toggle-dark-mode-button">Toggle Dark Mode</button>
+<script src="script.js"></script>
 </body>
 </html>
