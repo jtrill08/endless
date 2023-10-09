@@ -22,44 +22,99 @@ body {
     overflow: hidden; /* Hide default scrollbar */
 }
 
+body::-webkit-scrollbar {
+    width: 0.5em; /* Adjust as needed */
+}
+
 .fact-container {
-    font-size: 10px;
+    font-size: 13px;
     text-align: center;
-    max-width: 30%;
+    max-width: 45vh;
+    min-width: 300px; /* Set the minimum width to match the fact card container width */
     padding: 0; /* Remove vertical padding */
     background-color: var(--container-background); /* Default to light mode background */
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     overflow-y: scroll; /* Enable vertical scrolling */
     scroll-snap-type: y mandatory; /* Enable scroll snap */
-    height: 80vh; /* Set the container height to viewport height */
+    height: 90vh; /* Set the container height to viewport height */
 }
 
-/* styles.css */
-/* ... (other styles) */
+.fact-container {
+    /* ... (your other styles) ... */
+    overflow-y: scroll; /* Enable vertical scrolling */
+}
+
+/* Hide scrollbar for webkit-based browsers inside .fact-container */
+.fact-container::-webkit-scrollbar {
+    width: 0.5em; /* Adjust as needed */
+}
+
+#fact-container {
+    scroll-behavior: smooth;
+    /* Other styles for your fact container */
+}
+
+
+.max-image-size {
+    max-width: 100%;
+    max-height: 40vh; /* Adjust the maximum height as needed */
+    object-fit: contain;
+    overflow: hidden; /* Add overflow property */
+}
 
 .fact-card {
     margin: 10% auto;
+    height: 80vh;
     padding: 20px;
-    background-color: var(--fact-card-background); /* Default to light mode background */
+    background-color: var(--fact-card-background);
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden; /* Add overflow property */
+}
+
+.peek {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--peek-background);
+    text-align: center;
+    padding: 5px 0;
+    cursor: pointer;
+    transition: background-color 0.2s, opacity 0.2s; /* Add opacity transition */
+    opacity: 0; /* Initially hidden */
+}
+
+.peek span {
+    color: #888;
+}
+
+.loading-indicator {
+    display: none; /* Initially hidden */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.loading-message {
+    margin: 10% auto;
+    height: 60vh;
+    padding: 20px;
+    background-color:green; /* Default to light mode background */
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     scroll-snap-align: start; /* Snap each card to the start of the container */
-    display: flex; /* Use flexbox to control layout */
-    flex-direction: column; /* Stack elements vertically */
-    align-items: center; /* Center items horizontally */
-    height: 60vh;
+    display: flex;
+    max-width: 45vh;
+    flex-direction: column;
+    justify-content: space-between; /* Space between image and text */
 }
-
-
-.fact-card img {
-    max-width: 100%; /* Ensure the image scales proportionally */
-    max-height: 200px; /* Set a maximum height for images */
-    margin-bottom: 10px; /* Add some spacing between text and image */
-}
-
-.fact-card p {
-    margin: 0; /* Remove margin for the text */
-    overflow: auto; /* Enable text scrolling if it overflows */
-}
-
