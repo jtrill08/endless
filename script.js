@@ -270,7 +270,7 @@ factContainer.addEventListener('scroll', () => {
     // Calculate the scroll percentage (how far down the user has scrolled)
     const scrollPercentage = (scrollPosition / (contentHeight - containerHeight)) * 100;
 
-    if (scrollPercentage >= 90) {
+    if (scrollPercentage >= 40) {
         loadNextFacts(); // Load more facts when scrolled to 90% or more
     }
 });
