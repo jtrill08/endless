@@ -1,11 +1,20 @@
 const factContainer = document.getElementById('fact-container');
 const categoryButtons = document.querySelectorAll('.category-button');
+const isDarkModeButton = document.getElementById('toggle-dark-mode-button');
+let isDarkMode = false;
 let filterCategory = null; // Initialize with no filter
 let isLoadingFacts = false;
 
 const facts = [];
 let currentFactIndex = 0;
 const factsPerPage = 10; // Number of facts to load at once
+
+function toggleDarkMode() {
+    isDarkMode = !isDarkMode;
+    document.body.style.backgroundColor = isDarkMode ? 'var(--background-dark)' : 'var(--background-light)';
+    factContainer.style.backgroundColor = isDarkMode ? 'var(--background-dark)' : 'var(--container-background)';
+    // You can similarly update other elements' background colors, text colors, etc., as needed.
+}
 
 let abortController = new AbortController();
 
@@ -18,33 +27,17 @@ async function fetchRandomFact(category, retryCount = 3) {
 
         let apiUrl = 'https://en.wikipedia.org/api/rest_v1/page/random/summary';
 
-        const response = await fetch(apiUrl, {
-            method: 'GET', // Set the HTTP method to GET
-            signal: abortController.signal,
-            headers: {
-                'Accept-Encoding': 'gzip', // Add this header for compression
-                'User-Agent': 'YourAppName/1.0 (Contact: YourContactInfo)', // Add your User-Agent header here
-            },
-        });
+        const response = await fetch(apiUrl, { signal: abortController.signal });
 
         if (!response.ok) {
             if (response.status === 404) {
                 // Handle the 404 error gracefully and continue to the next fact
                 console.log('404 error encountered. Skipping to the next fact.');
                 return await fetchRandomFact(category);
-            } else if (response.status === 429) { // Rate limit exceeded
-                if (retryCount > 0) {
-                    const retryDelay = Math.pow(2, 4 - retryCount) * 1000; // Exponential backoff
-                    await new Promise(resolve => setTimeout(resolve, retryDelay));
-                    return await fetchRandomFact(category, retryCount - 1);
-                } else {
-                    throw new Error('Rate limit exceeded, and maximum retry count reached.');
-                }
             } else {
                 throw new Error(`API request failed with status: ${response.status}`);
             }
         }
-        
 
         const data = await response.json();
 
@@ -145,28 +138,7 @@ function createFactCard(factData, isLoading = false) {
     factElement.classList.add('fact-card');
 
     if (isLoading) {
-        const loadingSpinner = document.createElement('div');
-        loadingSpinner.classList.add('loading-spinner');
-    
-        // Create a container for the messages
-        const messageContainer = document.createElement('div');
-        messageContainer.classList.add('message-container'); // Add the new class
-    
-        // Add the "Patience, young grasshopper" message
-        const patienceMessage = document.createElement('div');
-        patienceMessage.textContent = 'Patience, young grasshopper';
-    
-        // Add the "Good things come to those who wait 🧠" quote
-        const quote = document.createElement('div');
-        quote.textContent = 'Good things come to those who wait 🧠';
-    
-        // Append the messages to the container
-        messageContainer.appendChild(patienceMessage);
-        messageContainer.appendChild(quote);
-    
-        // Append the loading spinner and message container to the factElement
-        factElement.appendChild(loadingSpinner);
-        factElement.appendChild(messageContainer);    
+        factElement.textContent = 'Loading...';
     } else {
         // Create a div for text content
         const textContentDiv = document.createElement('div');
@@ -270,7 +242,7 @@ factContainer.addEventListener('scroll', () => {
     // Calculate the scroll percentage (how far down the user has scrolled)
     const scrollPercentage = (scrollPosition / (contentHeight - containerHeight)) * 100;
 
-    if (scrollPercentage >= 40) {
+    if (scrollPercentage >= 90) {
         loadNextFacts(); // Load more facts when scrolled to 90% or more
     }
 });
@@ -287,6 +259,9 @@ factContainer.addEventListener('scroll', () => {
         loadNextFacts();
     }
 });
+
+
+isDarkModeButton.addEventListener('click', toggleDarkMode);
 
 function clearFactContainer() {
     while (factContainer.firstChild) {
@@ -327,5 +302,5 @@ categoryButtons.forEach(button => {
     });
 });
 
-// Initial load
+// Initial load 
 loadNextFacts();
