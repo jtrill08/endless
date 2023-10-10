@@ -39,7 +39,7 @@ body::-webkit-scrollbar {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
-    height: 90vh;
+    height: 60vh;
     margin-top: 10px; /* Add margin-top to separate it from the navigation bar */
 }
 
