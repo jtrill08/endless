@@ -1,20 +1,11 @@
 const factContainer = document.getElementById('fact-container');
 const categoryButtons = document.querySelectorAll('.category-button');
-const isDarkModeButton = document.getElementById('toggle-dark-mode-button');
-let isDarkMode = false;
 let filterCategory = null; // Initialize with no filter
 let isLoadingFacts = false;
 
 const facts = [];
 let currentFactIndex = 0;
 const factsPerPage = 10; // Number of facts to load at once
-
-function toggleDarkMode() {
-    isDarkMode = !isDarkMode;
-    document.body.style.backgroundColor = isDarkMode ? 'var(--background-dark)' : 'var(--background-light)';
-    factContainer.style.backgroundColor = isDarkMode ? 'var(--background-dark)' : 'var(--container-background)';
-    // You can similarly update other elements' background colors, text colors, etc., as needed.
-}
 
 let abortController = new AbortController();
 
@@ -27,17 +18,33 @@ async function fetchRandomFact(category, retryCount = 3) {
 
         let apiUrl = 'https://en.wikipedia.org/api/rest_v1/page/random/summary';
 
-        const response = await fetch(apiUrl, { signal: abortController.signal });
+        const response = await fetch(apiUrl, {
+            method: 'GET', // Set the HTTP method to GET
+            signal: abortController.signal,
+            headers: {
+                'Accept-Encoding': 'gzip', // Add this header for compression
+                'User-Agent': 'YourAppName/1.0 (Contact: YourContactInfo)', // Add your User-Agent header here
+            },
+        });
 
         if (!response.ok) {
             if (response.status === 404) {
                 // Handle the 404 error gracefully and continue to the next fact
                 console.log('404 error encountered. Skipping to the next fact.');
                 return await fetchRandomFact(category);
+            } else if (response.status === 429) { // Rate limit exceeded
+                if (retryCount > 0) {
+                    const retryDelay = Math.pow(2, 4 - retryCount) * 1000; // Exponential backoff
+                    await new Promise(resolve => setTimeout(resolve, retryDelay));
+                    return await fetchRandomFact(category, retryCount - 1);
+                } else {
+                    throw new Error('Rate limit exceeded, and maximum retry count reached.');
+                }
             } else {
                 throw new Error(`API request failed with status: ${response.status}`);
             }
         }
+        
 
         const data = await response.json();
 
@@ -78,42 +85,66 @@ function containsInterestingKeyword(fact, category) {
 
     // Keywords related to the new categories: Art, Science, History, Fashion, Geography, Zodiac, and Photography.
     const categoryKeywords = {
-        'Arts': [
-            'painter', 'illustrator', 'sculpture', 'architect', 'novelist', 'literature', 'musician', 'singer', 'composer', 'music genre', 'concert', 'album','magazine','film director', 'movie industry', 'cinematic history', 'classic movie', 'film festival', 'cinematography'
-        ],
+        'Culture': [
+            'painter', 'illustrator', 'sculpture', 'architect', 'architectural style', 'architectural history', 'architectural marvels', 'architectural innovation', 
+            'architectural traditions', 'novelist', 'film', 'pop culture','literature', 'musician', 'singer', 'composer',
+             'music genre', 'concert', 'album', 'magazine', 'film director', 'movie industry', 
+            'cinematic history', 'classic movie', 'film festival', 'cinematography', 'Renaissance art', 
+            'Baroque art', 'Rococo art', 'Neoclassical art', 'Romantic art', 'Impressionism', 'Expressionism', 
+            'Cubism', 'Surrealism', 'Abstract Expressionism', 'Pop Art', 'Minimalism', 'Conceptual Art', 'Bauhaus', 'Postmodernism', 'Islamic architecture', 
+            'Chinese architecture', 'Indian architecture', 'Mayan architectural', 'Greek architecture', 'Roman architectural', 'Gothic architectural', 
+            'Byzantine architecture', 'Japanese architecture', 'African architecture', 
+            'Indigenous architecture', 'Modernist architecture', 'Art Deco architecture', 'jewels', 'art deco',
+            'Mid-century modern', 'Contemporary architecture', 'classical music',
+             'Architectural theory', 'Architectural criticism', 'Architectural preservation', 'vernacular architecture',
+              'vernacular style', 'vernacular materials', 'vernacular design','carnaval', 'carnival' ],
         'Science': [
             'science', 'technology', 'engineering', 'mathematics',
             'biology', 'chemistry', 'physics', 'astronomy',
-            'computer science', 'information technology', 'innovation', 
-            'invention', 'space mission', 'astronaut', 'NASA', 'space agency', 'planet exploration', 'celestial body', 'technological innovation', 'inventor', 'visionary', 'technology breakthrough', 'scientific breakthrough', 'Nobel laureate', 'physics discovery', 'chemistry breakthrough', 'medical discovery'
-        ],
+            'tree species', 'plant', 'abiotic', 'biotic', 'decomposer', 'ecosystem', 'food web', 'nutrient cycling', 'Biodiversity', 'biomimicry', 'bio-inspired', 'biophilia', 'biomimetics', 'bioengineering', 'bionics', 'bio-utilization', 'Convergent evolution', 'Cross-pollination', 'experiment', 'Biotechnology', 'Taxonomy', 'Hydroponics', 'Embryology', 'Enzyme', 'Equilibrium', 'extinction', 'Homeostasis', 'Mitosis', 'DNA', 'isotope',
+            'computer science', 'information technology', 'innovation',
+            'invention', 'space mission', 'astronaut', 'NASA', 'space agency', 'planet exploration', 'celestial body', 'technological innovation', 'inventor', 'visionary', 'technology breakthrough', 'scientific breakthrough', 'Nobel laureate', 'physics discovery', 'chemistry breakthrough', 'medical discovery',
+            'Geology', 'Meteorology', 'Environmental Science', 'Neuroscience', 'Genetics', 'Botany', 'Zoology', 'Paleontology', 'Chemical Engineering', 'Quantum Physics', 'Astrobiology', 'Oceanography', 'Nanotechnology', 'Renewable Energy', 'Biomedical Engineering', 'Materials Science', 'Ecology', 'Climate Science', 'Cryptography', 'Particle Physics',
+            'Cell Biology', 'Genomic Sequencing', 'Quantum Mechanics', 'Organic Chemistry', 'Theoretical Physics', 'Neuroplasticity', 'Molecular Biology', 'Atomic Structure', "Einstein's Theory of Relativity", 'Genetic Engineering', 'Quantum Computing', 'Evolutionary Biology', 'Chemical Reactions', 'Biomechanics', 'Particle Accelerators', 'Microbiology', 'Quantum Field Theory'],
         'Geography': [
-            'geography', 'places', 'earth', 'bodies of water',
+            'geography', 'places', 'earth', 'province','bodies of water',
             'cities', 'continents', 'countries', 'deserts',
             'lakes', 'landforms', 'mountains', 'navigation',
-            'oceans', 'populated places', 'village','protected areas',
-            'regions', 'rivers', 'subterranea', 'territories',
-            'towns', 'villages', 'famous landmark', 'historical site', 
-            'architectural marvel', 'UNESCO World Heritage', 'cultural heritage',
-            'natural landscape', 'geological formation', 'ecosystem', 'breathtaking view',
-            'natural phenomenon', 'tourist attraction', 'local cuisine', 'cultural heritage', 'travel destination', 'must-visit place'
-        ],
+            'oceans', 'populated places', 'village', 'protected areas',
+            'regions', 'rivers', 'subterranea', 'Coastline', 'territories',
+            'towns', 'villages', 'famous landmarks', 'historical sites',
+            'architectural marvels', 'UNESCO World Heritage', 'cultural heritage',
+            'natural landscapes', 'geological formations', 'ecosystems', 'ecoregions', 'breathtaking views',
+            'natural phenomena', 'tourist attractions', 'local cuisine', 'cultural heritage', 'travel destinations', 'must-visit places', 'Amazon', 'region', 'landscapes', 'cultural treasures', 'waterfalls',
+             'beaches', 'territories', 'peninsulas', 'mountains', 'plains', 'landforms', 'hills', 'gorges', 'drainage basins', 'plates', 'valleys', 
+             'floodplains', 'glaciers', 'isthmuses', 'fjords', 'volcanoes', 'deserts', 'deltas',
+            'physical geography', 'piers', 'wetlands', 'continents', 'bays', 'archipelagos', 
+            'earthquakes', 'volcanic eruptions', 'tropical storms', 'tectonic plates', 'nutrient cycling',
+             'ecotourism', 'soil erosion', 'desertification', 'permafrost', 'tundra', 'caves', 'gabions', 'levees', 
+             'interlocking spurs', 'hydrographs', 'precipitation'],
         'History': [    
-            'Historical Events',
-            'Timeline',
-            'Ancient Civilizations',
-            'World Wars',
-            'Historical Figures',
-            'Historical Documents',
-            'Revolutions',
-            'Dynasties',
-            'Historical Artifacts',
-            'Archaeology',
-            'Historical Landmarks',
-            'History of Science',
-            'History of Medicine',
-            'Industrial Revolution',
-            'Renaissance'
+            'made history','Historical Event', 'Timeline', 'Ancient Civilizations', 'World Wars', 'Historical Figures', 'Historical Documents', 'Revolutions', 'Dynasties', 'Historical Artifacts', 'Archaeology', 'Historical Landmarks', 'History of Science', 'History of Medicine', 'Industrial Revolution', 'Renaissance',
+            'Pharaohs', 'Pyramids', 'Nile River', 'Hieroglyphics', 'Papyrus', 'Ancient Egyptian Art',
+            'Greek City-States', 'Athens', 'Sparta', 'Alexander the Great', 'Greek Mythology', 'Acropolis',
+            'Julius Caesar', 'Colosseum', 'Roman Republic', 'Roman Architecture', 'Roman Law',
+            'Knights', 'Crusades', 'Feudalism', 'Gothic Cathedrals', 'Viking Age',
+            'Qin Dynasty', 'Han Dynasty', 'Great Wall of China', 'Confucianism', 'Chinese Inventions',
+            'Mali Empire', 'Great Zimbabwe', 'Axum', 'Songhai Empire', 'Mansa Musa',
+            'Mayan Calendar', 'Tikal', 'Chichen Itza', 'Mayan Hieroglyphs',
+            'Tenochtitlan', 'Aztec Religion', 'Hernan Cortes', 'Machu Picchu', 'Inca Road System', 'Quipu', 'Andean Civilization',
+            'Indus Valley Civilization', 'Maurya Empire', 'Gupta Empire', 'Buddhism', 'Hinduism',
+            'Hagia Sophia', 'Justinian I', 'Byzantine Art', 'Eastern Orthodox Church',
+            'Genghis Khan', 'Silk Road', 'Yurts', 'Khanates','protest',
+            'Samurai', 'Shogun', 'Bushido', 'Feudal Japan',
+            'Ethiopian Orthodox Tewahedo Church', 'Lalibela', 'Rock-Hewn Churches',
+            'The Crusades', 'The Reformation', 'The Enlightenment', 'Religious Wars', 'European Colonial Empires', 'Exploration', 'Impact on Indigenous Peoples',
+            'World War I', 'World War II', 'Holocaust', 'Treaty of Versailles',
+            'The Cold War', 'Cuban Missile Crisis', 'Berlin Wall', 'Proxy Wars',
+            'Leonardo da Vinci', 'Michelangelo', 'Humanism', 'Industrialization', 'Steam Engine', 'Urbanization', 'Factory System', 'African American Civil Rights', 'Martin Luther King Jr.', 'Rosa Parks',
+            'Independence Day', '20th Century History', 'Globalization', 'Digital Revolution', 'Space Race',
+            'Royal', 'dynasty of kings','Empire', 'Colonization', 'War', 'Treaty', 'indigenous', 'Colonies', 'Archaeology', 'Architectural History', 'Artifact', 'BC', 'BCE', 'Rich History'
+
+
         ]
     };
 
@@ -138,24 +169,46 @@ function createFactCard(factData, isLoading = false) {
     factElement.classList.add('fact-card');
 
     if (isLoading) {
-        factElement.textContent = 'Loading...';
+        const loadingSpinner = document.createElement('div');
+        loadingSpinner.classList.add('loading-spinner');
+    
+        // Create a container for the messages
+        const messageContainer = document.createElement('div');
+        messageContainer.classList.add('message-container'); // Add the new class
+    
+        // Add the "Patience, young grasshopper" message
+        const patienceMessage = document.createElement('div');
+        patienceMessage.textContent = 'Patience, young grasshopper';
+    
+        // Add the "Good things come to those who wait 🧠" quote
+        const quote = document.createElement('div');
+        quote.textContent = 'Good things come to those who wait 🧠';
+    
+        // Append the messages to the container
+        messageContainer.appendChild(patienceMessage);
+        messageContainer.appendChild(quote);
+    
+        // Append the loading spinner and message container to the factElement
+        factElement.appendChild(loadingSpinner);
+        factElement.appendChild(messageContainer);    
     } else {
-        // Create a div for text content
+        // Create a div for the text content
         const textContentDiv = document.createElement('div');
         textContentDiv.textContent = factData.extract;
         textContentDiv.classList.add('fact-text'); // Add a class for styling if needed
+
+        // Append the text content div to the fact card
+        factElement.appendChild(textContentDiv);
 
         // Create a div for the image
         if (factData.image) {
             const imageElement = document.createElement('img');
             imageElement.src = factData.image;
             imageElement.classList.add('fact-image', 'max-image-size');
-            // Append the image to the text content div
-            textContentDiv.appendChild(imageElement);
+            
+            // Append the image to the fact card after the text
+            factElement.appendChild(imageElement);
         }
-
-        // Append the text content div to the fact card
-        factElement.appendChild(textContentDiv);
     }
 
     return factElement;
@@ -260,9 +313,6 @@ factContainer.addEventListener('scroll', () => {
     }
 });
 
-
-isDarkModeButton.addEventListener('click', toggleDarkMode);
-
 function clearFactContainer() {
     while (factContainer.firstChild) {
         factContainer.removeChild(factContainer.firstChild);
@@ -302,5 +352,5 @@ categoryButtons.forEach(button => {
     });
 });
 
-// Initial load 
+// Initial load
 loadNextFacts();
