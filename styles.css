@@ -176,6 +176,63 @@ body::-webkit-scrollbar {
     }
 }
 
+.category-nav-container {
+    overflow-x: auto; /* Enable horizontal scrolling */
+    white-space: nowrap; /* Prevent button text from wrapping */
+    -ms-overflow-style: none; /* Hide scrollbar in Internet Explorer */
+    scrollbar-width: none; /* Hide scrollbar in Firefox */
+    background-color: #191414;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    width: 50vh; /* Take full width of the container */
+}
+
+/* Hide the scrollbar for other browsers */
+.category-nav-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Add CSS to style the category navigation */
+.category-nav, #home-button {
+    display: inline-block; /* Display buttons inline */
+    padding: 10px; /* Add padding to both home and category buttons */
+}
+
+#home-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.2s, color 0.2s;
+    color: white;
+    margin-right: 10px; /* Add some spacing between home and category buttons */
+}
+
+.category-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.2s, color 0.2s;
+    color: white;
+    margin-right: 10px; /* Add some spacing between category buttons */
+}
+
+.category-button:hover {
+    background-color: var(--peek-background);
+    color: var(--text-dark);
+}
+
+#home-button:hover {
+    background-color: var(--peek-background);
+    color: var(--text-dark);
+}
+
 
 /* Update the fact container's styles */
 .fact-container {
@@ -222,11 +279,3 @@ footer p{
         margin-inline-start: 0px;
         margin-inline-end: 0px;
 }
-
-
-
-
-
-
-
-
