@@ -95,7 +95,7 @@ function containsInterestingKeyword(fact, category) {
             'Chinese architecture', 'Indian architecture', 'Mayan architectural', 'Greek architecture', 'Roman architectural', 'Gothic architectural', 
             'Byzantine architecture', 'Japanese architecture', 'African architecture', 
             'Indigenous architecture', 'Modernist architecture', 'Art Deco architecture', 'jewels', 'art deco',
-            'Mid-century modern', 'Contemporary architecture', 'classical music','dish','meal','cuisine','food',
+            'Mid-century modern', 'Contemporary architecture', 'classical music',
              'Architectural theory', 'Architectural criticism', 'Architectural preservation', 'vernacular architecture',
               'vernacular style', 'vernacular materials', 'vernacular design','carnaval', 'carnival' ],
         'Science': [
