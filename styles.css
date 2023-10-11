@@ -31,9 +31,9 @@ body::-webkit-scrollbar {
 
 .fact-container {
     font-size: 2.2vh;
+    font-weight: 400;
     text-align: center;
-    max-width: 50vh;
-    min-width: 300px;
+    width: 50vh;
     padding: 0;
     background-color: #191414;
     border-radius: 10px;
@@ -72,9 +72,9 @@ body::-webkit-scrollbar {
 }
 
 .fact-card {
-    margin: 5% auto;
-    height: 72vh;
-    padding: 20px;
+    margin: 0 auto 3vh auto;
+    height: 68vh;
+    padding: 6vh 2vh 2vh 2vh;
     background-color:#535353;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -186,12 +186,19 @@ body::-webkit-scrollbar {
     position: sticky;
     top: 0;
     z-index: 2;
+    display: flex;
+    justify-content: space-between;
     width: 50vh; /* Take full width of the container */
 }
 
 /* Hide the scrollbar for other browsers */
 .category-nav-container::-webkit-scrollbar {
     display: none;
+}
+
+.static-button {
+    padding: 1vh; /* Add padding to the static button container */
+    background-color: #191414;
 }
 
 /* Add CSS to style the category navigation */
@@ -204,11 +211,12 @@ body::-webkit-scrollbar {
     background-color: transparent;
     border: none;
     cursor: pointer;
+    padding: 8px 16px;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 1.2vh;
     transition: background-color 0.2s, color 0.2s;
     color: white;
-    margin-right: 10px; /* Add some spacing between home and category buttons */
+    margin-right: 0; /* Add some spacing between home and category buttons */
 }
 
 .category-button {
@@ -217,10 +225,10 @@ body::-webkit-scrollbar {
     cursor: pointer;
     padding: 8px 16px;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 1.2vh;
     transition: background-color 0.2s, color 0.2s;
     color: white;
-    margin-right: 10px; /* Add some spacing between category buttons */
+    margin: 0vh, 0; /* Add some spacing between category buttons */
 }
 
 .category-button:hover {
@@ -233,12 +241,18 @@ body::-webkit-scrollbar {
     color: var(--text-dark);
 }
 
+.scrollable-buttons {
+    overflow-x: auto; /* Enable horizontal scrolling for these buttons */
+    white-space: nowrap; /* Prevent button text from wrapping */
+    padding: 1vh ;
+}
+
 
 /* Update the fact container's styles */
 .fact-container {
     /* ... (your existing styles) ... */
-    margin-top: 10px; /* Adjust the margin as needed to separate it from the navigation */
-    margin-bottom: 10px;
+    margin-top: 1vh; /* Adjust the margin as needed to separate it from the navigation */
+    margin-bottom: 1vh;
 }
 
 
