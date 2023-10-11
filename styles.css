@@ -186,20 +186,12 @@ body::-webkit-scrollbar {
     position: sticky;
     top: 0;
     z-index: 2;
-    width: 100%; /* Take full width of the container */
-    display: flex;
-    justify-content: space-between;
     width: 50vh; /* Take full width of the container */
 }
 
 /* Hide the scrollbar for other browsers */
 .category-nav-container::-webkit-scrollbar {
     display: none;
-}
-
-.static-button {
-    padding: 10px; /* Add padding to the static button container */
-    background-color: #191414;
 }
 
 /* Add CSS to style the category navigation */
@@ -239,12 +231,6 @@ body::-webkit-scrollbar {
 #home-button:hover {
     background-color: var(--peek-background);
     color: var(--text-dark);
-}
-
-.scrollable-buttons {
-    overflow-x: auto; /* Enable horizontal scrolling for these buttons */
-    white-space: nowrap; /* Prevent button text from wrapping */
-    padding: 12px;
 }
 
 
