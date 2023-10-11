@@ -99,9 +99,9 @@ function containsInterestingKeyword(fact, category) {
              'Architectural theory', 'Architectural criticism', 'Architectural preservation', 'vernacular architecture',
               'vernacular style', 'vernacular materials', 'vernacular design','carnaval', 'carnival' ],
         'Science': [
-            'science', 'technology', 'engineering', 'mathematics',
+            'science','virus','organism', 'technology', 'engineering', 'mathematics',
             'biology', 'chemistry', 'physics', 'astronomy',
-            'tree species', 'plant', 'abiotic', 'biotic', 'decomposer', 'ecosystem', 'food web', 'nutrient cycling', 'Biodiversity', 'biomimicry', 'bio-inspired', 'biophilia', 'biomimetics', 'bioengineering', 'bionics', 'bio-utilization', 'Convergent evolution', 'Cross-pollination', 'experiment', 'Biotechnology', 'Taxonomy', 'Hydroponics', 'Embryology', 'Enzyme', 'Equilibrium', 'extinction', 'Homeostasis', 'Mitosis', 'DNA', 'isotope',
+            'species', 'archaic humans','plant', 'abiotic', 'biotic', 'decomposer', 'ecosystem', 'food web', 'nutrient cycling', 'Biodiversity', 'biomimicry', 'bio-inspired', 'biophilia', 'biomimetics', 'bioengineering', 'bionics', 'bio-utilization', 'Convergent evolution', 'Cross-pollination', 'experiment', 'Biotechnology', 'Taxonomy', 'Hydroponics', 'Embryology', 'Enzyme', 'Equilibrium', 'extinction', 'Homeostasis', 'Mitosis', 'DNA', 'isotope',
             'computer science', 'information technology', 'innovation',
             'invention', 'space mission', 'astronaut', 'NASA', 'space agency', 'planet exploration', 'celestial body', 'technological innovation', 'inventor', 'visionary', 'technology breakthrough', 'scientific breakthrough', 'Nobel laureate', 'physics discovery', 'chemistry breakthrough', 'medical discovery',
             'Geology', 'Meteorology', 'Environmental Science', 'Neuroscience', 'Genetics', 'Botany', 'Zoology', 'Paleontology', 'Chemical Engineering', 'Quantum Physics', 'Astrobiology', 'Oceanography', 'Nanotechnology', 'Renewable Energy', 'Biomedical Engineering', 'Materials Science', 'Ecology', 'Climate Science', 'Cryptography', 'Particle Physics',
