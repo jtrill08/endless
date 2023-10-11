@@ -185,6 +185,7 @@ body::-webkit-scrollbar {
     border-bottom: 1px solid var(--border-color);
     position: sticky;
     top: 0;
+    margin-top: 2vh;
     z-index: 2;
     display: flex;
     justify-content: space-between;
@@ -197,7 +198,7 @@ body::-webkit-scrollbar {
 }
 
 .static-button {
-    padding: 1vh; /* Add padding to the static button container */
+    padding: 1vh 1vh 1vh 0vh; /* Add padding to the static button container */
     background-color: #191414;
 }
 
@@ -211,24 +212,25 @@ body::-webkit-scrollbar {
     background-color: transparent;
     border: none;
     cursor: pointer;
-    padding: 8px 16px;
+    padding: 5px 10px;
     border-radius: 5px;
-    font-size: 1.2vh;
+    font-size: 1.8vh;
     transition: background-color 0.2s, color 0.2s;
     color: white;
-    margin-right: 0; /* Add some spacing between home and category buttons */
+    margin-right: 3; /* Add some spacing between home and category buttons */
 }
 
 .category-button {
     background-color: transparent;
     border: none;
     cursor: pointer;
-    padding: 8px 16px;
+    padding: 5px 10px;
     border-radius: 5px;
-    font-size: 1.2vh;
+    font-size: 1.8vh;
     transition: background-color 0.2s, color 0.2s;
     color: white;
-    margin: 0vh, 0; /* Add some spacing between category buttons */
+    margin-right: 2vh; /* Add some spacing between category buttons */
+    margin-left: 1.3vh;
 }
 
 .category-button:hover {
