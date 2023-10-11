@@ -5,20 +5,21 @@
     --text-light: #000000;
     --text-dark: #ffffff;
     --container-background: #ffffff;
-    --border-color: #333333;
+    --border-color: #212121;
     --peek-background: #f0f0f0;
     --fact-card-background: #ffffff;
 }
 
 body {
     font-family: Arial, sans-serif;
+    color: white;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column; /* Ensure flex children stack vertically */
     align-items: center; /* Center horizontally */
     min-height: 100vh;
-    background-color: var(--background-light); /* Default to light mode background */
+    background-color: #191414; /* Default to light mode background */
     overflow: hidden; /* Hide default scrollbar */
 }
 
@@ -29,18 +30,22 @@ body::-webkit-scrollbar {
 }
 
 .fact-container {
-    font-size: 13px;
+    font-size: 2.2vh;
     text-align: center;
     max-width: 50vh;
     min-width: 300px;
     padding: 0;
-    background-color: var(--container-background);
+    background-color: #191414;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
-    height: 90vh;
+    height: 83vh;
     margin-top: 10px; /* Add margin-top to separate it from the navigation bar */
+}
+
+.fact-text {
+    margin-bottom: 5vh; /* Adjust this value to control the spacing */
 }
 
 .fact-container {
@@ -61,24 +66,26 @@ body::-webkit-scrollbar {
 
 .max-image-size {
     max-width: 100%;
-    max-height: 40vh; /* Adjust the maximum height as needed */
+    max-height: 30vh; /* Adjust the maximum height as needed */
     object-fit: contain;
     overflow: hidden; /* Add overflow property */
 }
 
 .fact-card {
-    margin: 10% auto;
-    height: 80vh;
+    margin: 5% auto;
+    height: 72vh;
     padding: 20px;
-    background-color: var(--fact-card-background);
+    background-color:#535353;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     scroll-snap-align: start;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start; /* Adjust this property */
     overflow: hidden; /* Add overflow property */
+    color: white;
 }
+
 
 .peek {
     position: absolute;
@@ -175,11 +182,12 @@ body::-webkit-scrollbar {
     justify-content: center; /* Center horizontally within the container */
     align-items: center;
     padding: 10px;
-    background-color: var(--container-background);
+    background-color: #191414;
     border-bottom: 1px solid var(--border-color);
     position: sticky;
     top: 0;
     z-index: 2;
+    max-width: 50vh;
 }
 
 
@@ -192,6 +200,7 @@ body::-webkit-scrollbar {
     border-radius: 5px;
     font-size: 16px;
     transition: background-color 0.2s, color 0.2s;
+    color: white;
 }
 
 .category-button:hover {
@@ -203,4 +212,51 @@ body::-webkit-scrollbar {
 .fact-container {
     /* ... (your existing styles) ... */
     margin-top: 10px; /* Adjust the margin as needed to separate it from the navigation */
+    margin-bottom: 10px;
 }
+
+
+/* Style the footer and its content */
+footer {
+    background-color:  #191414;
+    color: white;
+    width: 50vh;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-content {
+    width: 50vh;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:  #191414;
+}
+
+/* Style the "Feedback" link */
+footer a {
+    color: #007AFF;
+    color: white;
+    font-size: 1.5vh;
+    text-decoration: none;
+    margin-left: 5vh;
+    margin-right: 5vh; /* Add right margin to increase spacing */
+}
+
+footer p{
+        display: block;
+        margin-block-start: 1vh;
+        margin-block-end: 1vh;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+}
+
+
+
+
+
+
+
