@@ -90,12 +90,12 @@ function containsInterestingKeyword(fact, category) {
             'architectural traditions', 'novelist', 'film', 'pop culture','literature', 'musician', 'singer', 'composer',
              'music genre', 'concert', 'album', 'magazine', 'film director', 'movie industry', 
             'cinematic history', 'classic movie', 'film festival', 'cinematography', 'Renaissance art', 
-            'Baroque art', 'Rococo art', 'Neoclassical art', 'Romantic art', 'Impressionism', 'Expressionism', 
-            'Cubism', 'Surrealism', 'Abstract Expressionism', 'Pop Art', 'Minimalism', 'Conceptual Art', 'Bauhaus', 'Postmodernism', 'Islamic architecture', 
+            'Baroque art', 'Rococo art', 'Neoclassical art', 'fairytale architecture', 'Romantic art', 'Impressionism', 'Expressionism', 
+            'Cubism', 'Surrealism', 'Storybook architecture', 'Abstract Expressionism', 'Pop Art', 'Minimalism', 'Conceptual Art', 'Bauhaus', 'Postmodernism', 'Islamic architecture', 
             'Chinese architecture', 'Indian architecture', 'Mayan architectural', 'Greek architecture', 'Roman architectural', 'Gothic architectural', 
             'Byzantine architecture', 'Japanese architecture', 'African architecture', 
             'Indigenous architecture', 'Modernist architecture', 'Art Deco architecture', 'jewels', 'art deco',
-            'Mid-century modern', 'Contemporary architecture', 'classical music',
+            'Mid-century modern', 'Contemporary architecture', 'classical music','dish','meal','cuisine','food',
              'Architectural theory', 'Architectural criticism', 'Architectural preservation', 'vernacular architecture',
               'vernacular style', 'vernacular materials', 'vernacular design','carnaval', 'carnival' ],
         'Science': [
@@ -230,7 +230,11 @@ homeButton.addEventListener('click', () => {
     abortController = new AbortController();
 
     // Load initial facts (without a filter)
-    loadNextFacts();
+
+    // Remove the 'clicked' class from all category buttons (remove orange background)
+    categoryButtons.forEach(btn => {
+        btn.classList.remove('clicked');
+    });
 
     // Debugging statement
     console.log('Navigated to Home');
@@ -321,6 +325,11 @@ function clearFactContainer() {
 
 let debounceTimer; // Add a debounce timer
 
+// JavaScript
+
+// ...
+
+// Add an event listener to handle category button clicks
 categoryButtons.forEach(button => {
     button.addEventListener('click', async () => {
         const newCategory = button.getAttribute('data-category');
@@ -337,6 +346,11 @@ categoryButtons.forEach(button => {
             facts.length = 0;
             clearFactContainer();
 
+            // Remove the 'clicked' class from all category buttons
+            categoryButtons.forEach(btn => {
+                btn.classList.remove('clicked');
+            });
+
             // Cancel the previous API request if it's still active after a short delay
             clearTimeout(debounceTimer);
             debounceTimer = setTimeout(() => {
@@ -346,11 +360,18 @@ categoryButtons.forEach(button => {
                 abortController = new AbortController();
 
                 // Load new facts for the selected category
+
                 loadNextFacts();
+
+                // Add the 'clicked' class to the clicked button (change background to orange)
+                button.classList.add('clicked');
             }, 300); // Adjust the delay as needed
         }
     });
 });
+
+
+
 
 // Initial load
 loadNextFacts();
