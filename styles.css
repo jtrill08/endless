@@ -176,44 +176,6 @@ body::-webkit-scrollbar {
     }
 }
 
-/* Add CSS to style the category navigation */
-.category-nav, #home-button {
-    display: flex;
-    justify-content: center; /* Center horizontally within the container */
-    align-items: center;
-    padding: 10px;
-    background-color: #191414;
-    border-bottom: 1px solid var(--border-color);
-    position: sticky;
-    top: 0;
-    z-index: 2;
-    max-width: 50vh;
-}
-
-
-
-
-.category-button , #home-button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 8px 16px;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: background-color 0.2s, color 0.2s;
-    color: white;
-}
-
-.category-button:hover {
-    background-color: var(--peek-background);
-    color: var(--text-dark);
-}
-
-#home-button:hover {
-    background-color: var(--peek-background);
-    color: var(--text-dark);
-}
-
 
 /* Update the fact container's styles */
 .fact-container {
