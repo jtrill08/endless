@@ -11,7 +11,7 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Lato', Arial, sans-serif;
     color: white;
     margin: 0;
     padding: 0;
@@ -177,7 +177,7 @@ body::-webkit-scrollbar {
 }
 
 /* Add CSS to style the category navigation */
-.category-nav {
+.category-nav, #home-button {
     display: flex;
     justify-content: center; /* Center horizontally within the container */
     align-items: center;
@@ -192,7 +192,8 @@ body::-webkit-scrollbar {
 
 
 
-.category-button {
+
+.category-button , #home-button {
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -207,6 +208,12 @@ body::-webkit-scrollbar {
     background-color: var(--peek-background);
     color: var(--text-dark);
 }
+
+#home-button:hover {
+    background-color: var(--peek-background);
+    color: var(--text-dark);
+}
+
 
 /* Update the fact container's styles */
 .fact-container {
