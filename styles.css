@@ -1,17 +1,6 @@
 /* styles.css */
-:root {
-    --background-light: #f7f7f7;
-    --background-dark: #121212;
-    --text-light: #000000;
-    --text-dark: #ffffff;
-    --container-background: #ffffff;
-    --border-color: #212121;
-    --peek-background: #f0f0f0;
-    --fact-card-background: #ffffff;
-}
-
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Lato', Arial, sans-serif;
     color: white;
     margin: 0;
     padding: 0;
@@ -19,39 +8,34 @@ body {
     flex-direction: column; /* Ensure flex children stack vertically */
     align-items: center; /* Center horizontally */
     min-height: 100vh;
-    background-color: #191414; /* Default to light mode background */
+    background-color: #121212; /* Default to light mode background */
     overflow: hidden; /* Hide default scrollbar */
 }
-
-
 
 body::-webkit-scrollbar {
     width: 0.5em; /* Adjust as needed */
 }
 
 .fact-container {
-    font-size: 2.2vh;
+    font-size: 0.9rem;
+    font-weight: 400;
     text-align: center;
-    max-width: 50vh;
-    min-width: 300px;
-    padding: 0;
-    background-color: #191414;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 45vh;
+    padding-left: 0.5em;
+    background-color: #121212;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
-    height: 85vh;
-    margin-top: 10px; /* Add margin-top to separate it from the navigation bar */
+    height: 83vh;
+    margin-top: 2vh; /* Add margin-top to separate it from the navigation bar */
+
 }
 
 .fact-text {
-    margin-bottom: 5vh; /* Adjust this value to control the spacing */
+    margin-bottom: 2vh; /* Adjust this value to control the spacing */
+    padding: 2vh;
+    margin-top: 2.5vh;
 }
 
-.fact-container {
-    /* ... (your other styles) ... */
-    overflow-y: scroll; /* Enable vertical scrolling */
-}
 
 /* Hide scrollbar for webkit-based browsers inside .fact-container */
 .fact-container::-webkit-scrollbar {
@@ -66,18 +50,16 @@ body::-webkit-scrollbar {
 
 .max-image-size {
     max-width: 100%;
-    max-height: 30vh; /* Adjust the maximum height as needed */
+    max-height: 35%; /* Adjust the maximum height as needed */
     object-fit: contain;
     overflow: hidden; /* Add overflow property */
 }
 
 .fact-card {
-    margin: 10% auto;
-    height: 80vh;
-    padding: 20px;
-    background-color:#535353;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 3.0vh;
+    height: 76.5vh;
+    background-color:#212121;
+    border-radius: 2.2vh;
     scroll-snap-align: start;
     display: flex;
     flex-direction: column;
@@ -162,7 +144,7 @@ body::-webkit-scrollbar {
     width: 40px;
     height: 40px;
     border: 4px solid rgba(0, 0, 0, 0.3);
-    border-top: 4px solid #007AFF; /* Color of the spinner */
+    border-top: 4px solid #FFA500; /* Color of the spinner */
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
@@ -176,67 +158,137 @@ body::-webkit-scrollbar {
     }
 }
 
-/* Add CSS to style the category navigation */
-.category-nav {
-    display: flex;
-    justify-content: center; /* Center horizontally within the container */
-    align-items: center;
-    padding: 10px;
-    background-color: #191414;
-    border-bottom: 1px solid var(--border-color);
+.category-nav-container {
+    overflow-x: auto; /* Enable horizontal scrolling */
+    white-space: nowrap; /* Prevent button text from wrapping */
+    -ms-overflow-style: none; /* Hide scrollbar in Internet Explorer */
+    scrollbar-width: none; /* Hide scrollbar in Firefox */
+    background-color: #121212;
     position: sticky;
     top: 0;
+    margin-top: 2vh;
     z-index: 2;
-    max-width: 50vh;
+    display: flex;
+    justify-content: space-between;
+    width: 45vh; /* Take full width of the container */
 }
 
+/* Hide the scrollbar for other browsers */
+.category-nav-container::-webkit-scrollbar {
+    display: none;
+}
 
+/* Hide the scrollbar for Firefox */
+.category-nav-container {
+    scrollbar-width: none;
+}
 
-.category-button {
-    background-color: transparent;
+.static-button {
+    padding: 1vh 0vh 1vh 0vh; /* Add padding to the static button container */
+    background-color: #121212;
+}
+
+/* Add CSS to style the category navigation */
+.category-nav, #home-button {
+    display: inline-block; /* Display buttons inline */
+    padding: 10px; /* Add padding to both home and category buttons */
+}
+
+#home-button {
+    background-color: #212121;
     border: none;
     cursor: pointer;
     padding: 8px 16px;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: background-color 0.2s, color 0.2s;
+    border-radius: 3vh; /* Add border-radius for rounded shape */
+    font-size: 0.7rem;
+    transition: background-color 0.2s, color 0.2s, border-radius 0.2s; /* Add transitions */
     color: white;
+    margin-right: 1vh; /* Add some spacing between home and category buttons */
 }
+
+.category-button {
+    background-color: #212121;
+    border: none;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 3vh; /* Add border-radius for rounded shape */
+    font-size: 0.7rem;
+    transition: background-color 0.2s, color 0.2s, border-radius 0.2s; /* Add transitions */
+    color: white;
+    margin-right:1.2vh; /* Add some spacing between category buttons */
+}
+
 
 .category-button:hover {
-    background-color: var(--peek-background);
-    color: var(--text-dark);
+    background-color: #FFA500; /* Light grey background on hover */
+    color: #121212;
 }
 
-/* Update the fact container's styles */
-.fact-container {
-    /* ... (your existing styles) ... */
-    margin-top: 10px; /* Adjust the margin as needed to separate it from the navigation */
-    margin-bottom: 10px;
+.category-button:focus {
+    outline: none; /* Remove focus outline */
+}
+
+.category-button.clicked {
+    background-color: #FFA500; /* Orange background when clicked */
+    color: var(--text-light);
+    border-radius: 15px; /* Maintain the rounded shape when clicked */
+}
+
+#home-button:hover {
+    background-color: #FFA500; /* Light grey background on hover */
+    color: #121212;
+}
+
+#home-button:focus {
+    outline: none; /* Remove focus outline */
+}
+
+#home-button.clicked {
+    background-color: #FFA500; /* Orange background when clicked */
+    color: var(--text-light);
+    border-radius: 15px; /* Maintain the rounded shape when clicked */
+}
+
+.scrollable-buttons {
+    overflow-x: auto; /* Enable horizontal scrolling for these buttons */
+    white-space: nowrap; /* Prevent button text from wrapping */
+    padding: 1vh ;
 }
 
 
-
+/* Style the footer and its content */
 footer {
-    background-color: #333; /* Background color for the footer */
-    color: white; /* Text color for the footer */
-    padding: 20px; /* Add padding for spacing */
-    text-align: center; /* Center-align the content */
-    display: flex;
-    justify-content: center; /* Center horizontally within the container */
-    position: sticky;
+    background-color:  #121212;
+    color: white;
     width: 50vh;
-
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .footer-content {
-    max-width: 800px; /* Set a maximum width for the content */
-    margin: 0 auto; /* Center the content horizontally */
+    width: 50vh;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:  #121212;
 }
 
-/* Style the links within the footer */
+/* Style the "Feedback" link */
 footer a {
-    color: #007AFF; /* Link color */
-    text-decoration: none; /* Remove underlines */
-    margin: 0 10px; /* Add spacing between links */
+    color: white;
+    font-size: 0.7rem;
+    text-decoration: none;
+    margin-left: 5vh;
+    margin-right: 5vh; /* Add right margin to increase spacing */
+}
+
+footer p{
+        display: block;
+        margin-block-start: 1vh;
+        margin-block-end: 1vh;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
 }
