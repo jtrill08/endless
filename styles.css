@@ -25,7 +25,7 @@ body::-webkit-scrollbar {
     background-color: #121212;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
-    height: 45vh;
+    height: 80vh;
     margin-top: 2vh; /* Add margin-top to separate it from the navigation bar */
 
 }
@@ -57,7 +57,7 @@ body::-webkit-scrollbar {
 
 .fact-card {
     margin-bottom: 3.0vh;
-    height: 76.5vh;
+    min-height: 70vh;
     background-color:#212121;
     border-radius: 2.2vh;
     scroll-snap-align: start;
