@@ -25,7 +25,7 @@ body::-webkit-scrollbar {
     background-color: #121212;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
-    height: 60%;
+    height: 83vh;
     margin-top: 2vh; /* Add margin-top to separate it from the navigation bar */
 
 }
@@ -265,7 +265,6 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
 }
 
 .footer-content {
