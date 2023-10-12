@@ -90,33 +90,32 @@ function containsInterestingKeyword(fact, category) {
             'architectural traditions', 'novelist', 'film', 'pop culture','literature', 'musician', 'singer', 'composer',
              'music genre', 'concert', 'album', 'magazine', 'film director', 'movie industry', 
             'cinematic history', 'classic movie', 'film festival', 'cinematography', 'Renaissance art', 
-            'Baroque art', 'Rococo art', 'Neoclassical art', 'fairytale architecture', 'Romantic art', 'Impressionism', 'Expressionism', 
-            'Cubism', 'Surrealism', 'Storybook architecture', 'Abstract Expressionism', 'Pop Art', 'Minimalism', 'Conceptual Art', 'Bauhaus', 'Postmodernism', 'Islamic architecture', 
+            'Baroque art', 'Rococo art', 'Neoclassical art', 'Romantic art', 'Impressionism', 'Expressionism', 
+            'Cubism', 'Surrealism', 'Abstract Expressionism', 'Pop Art', 'Minimalism', 'Conceptual Art', 'Bauhaus', 'Postmodernism', 'Islamic architecture', 
             'Chinese architecture', 'Indian architecture', 'Mayan architectural', 'Greek architecture', 'Roman architectural', 'Gothic architectural', 
             'Byzantine architecture', 'Japanese architecture', 'African architecture', 
             'Indigenous architecture', 'Modernist architecture', 'Art Deco architecture', 'jewels', 'art deco',
-            'Mid-century modern', 'Contemporary architecture', 'classical music','dish','meal','cuisine','food',
+            'Mid-century modern', 'Contemporary architecture', 'classical music',
              'Architectural theory', 'Architectural criticism', 'Architectural preservation', 'vernacular architecture',
               'vernacular style', 'vernacular materials', 'vernacular design','carnaval', 'carnival' ],
         'Science': [
             'science','virus','organism', 'technology', 'engineering', 'mathematics',
-            'biology', 'chemistry', 'physics', 'astronomy','gene','protein','cells','biological rhythms','chronobiology','chromosomes',
-            'species', 'archaic humans','plant', 'abiotic', 'biotic', 'decomposer', 'ecosystem', 'food web', 'nutrient cycling', 'Biodiversity', 'biomimicry', 'bio-inspired',
-            'biophilia', 'biomimetics', 'bioengineering', 'bionics', 'bio-utilization', 'Convergent evolution', 'Cross-pollination', 'experiment', 'Biotechnology', 'Taxonomy', 'Hydroponics', 'Embryology', 'Enzyme', 'Equilibrium', 'extinction', 'Homeostasis', 'Mitosis', 'DNA', 'isotope',
-            'computer science', 'information technology', 'innovation','circadian','nuclei','physiology','pathophysiology',
+            'biology', 'chemistry', 'physics', 'astronomy',
+            'species', 'archaic humans','plant', 'abiotic', 'biotic', 'decomposer', 'ecosystem', 'food web', 'nutrient cycling', 'Biodiversity', 'biomimicry', 'bio-inspired', 'biophilia', 'biomimetics', 'bioengineering', 'bionics', 'bio-utilization', 'Convergent evolution', 'Cross-pollination', 'experiment', 'Biotechnology', 'Taxonomy', 'Hydroponics', 'Embryology', 'Enzyme', 'Equilibrium', 'extinction', 'Homeostasis', 'Mitosis', 'DNA', 'isotope',
+            'computer science', 'information technology', 'innovation',
             'invention', 'space mission', 'astronaut', 'NASA', 'space agency', 'planet exploration', 'celestial body', 'technological innovation', 'inventor', 'visionary', 'technology breakthrough', 'scientific breakthrough', 'Nobel laureate', 'physics discovery', 'chemistry breakthrough', 'medical discovery',
-            'Geology', 'Meteorology', 'Environmental Science', 'Neuroscience', 'Genetics', 'Botany', 'Zoology', 'Paleontology', 'Chemical Engineering', 'Quantum Physics', 'Astrobiology', 'Oceanography', 'Nanotechnology', 'Renewable Energy', 'Biomedical Engineering', 'Materials Science', 'Ecology', 'Climate Science', 'Cryptography', 'Particle Physics','physics theories','biology theories', 'chemistry theories', 'scientific','scientific concept','scientific theory',
+            'Geology', 'Meteorology', 'Environmental Science', 'Neuroscience', 'Genetics', 'Botany', 'Zoology', 'Paleontology', 'Chemical Engineering', 'Quantum Physics', 'Astrobiology', 'Oceanography', 'Nanotechnology', 'Renewable Energy', 'Biomedical Engineering', 'Materials Science', 'Ecology', 'Climate Science', 'Cryptography', 'Particle Physics',
             'Cell Biology', 'Genomic Sequencing', 'Quantum Mechanics', 'Organic Chemistry', 'Theoretical Physics', 'Neuroplasticity', 'Molecular Biology', 'Atomic Structure', "Einstein's Theory of Relativity", 'Genetic Engineering', 'Quantum Computing', 'Evolutionary Biology', 'Chemical Reactions', 'Biomechanics', 'Particle Accelerators', 'Microbiology', 'Quantum Field Theory'],
         'Geography': [
             'geography', 'places', 'earth', 'province','bodies of water',
-            'cities', 'continents', 'country', 'deserts',
+            'cities', 'continents', 'countries', 'deserts',
             'lakes', 'landforms', 'mountains', 'navigation',
             'oceans', 'populated places', 'village', 'protected areas',
             'regions', 'rivers', 'subterranea', 'Coastline', 'territories',
             'towns', 'villages', 'famous landmarks', 'historical sites',
             'architectural marvels', 'UNESCO World Heritage', 'cultural heritage',
             'natural landscapes', 'geological formations', 'ecosystems', 'ecoregions', 'breathtaking views',
-            'natural phenomena','regional park', 'tourist attractions', 'local cuisine', 'cultural heritage', 'travel destinations', 'must-visit places', 'Amazon', 'region', 'landscapes', 'cultural treasures', 'waterfalls',
+            'natural phenomena', 'tourist attractions', 'local cuisine', 'cultural heritage', 'travel destinations', 'must-visit places', 'Amazon', 'region', 'landscapes', 'cultural treasures', 'waterfalls',
              'beaches', 'territories', 'peninsulas', 'mountains', 'plains', 'landforms', 'hills', 'gorges', 'drainage basins', 'plates', 'valleys', 
              'floodplains', 'glaciers', 'isthmuses', 'fjords', 'volcanoes', 'deserts', 'deltas',
             'physical geography', 'piers', 'wetlands', 'continents', 'bays', 'archipelagos', 
@@ -322,11 +321,6 @@ function clearFactContainer() {
 
 let debounceTimer; // Add a debounce timer
 
-// JavaScript
-
-// ...
-
-// Add an event listener to handle category button clicks
 categoryButtons.forEach(button => {
     button.addEventListener('click', async () => {
         const newCategory = button.getAttribute('data-category');
@@ -357,9 +351,6 @@ categoryButtons.forEach(button => {
         }
     });
 });
-
-
-
 
 // Initial load
 loadNextFacts();
