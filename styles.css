@@ -25,7 +25,7 @@ body::-webkit-scrollbar {
     background-color: #121212;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
-    height: 50vh;
+    height: 45vh;
     margin-top: 2vh; /* Add margin-top to separate it from the navigation bar */
 
 }
