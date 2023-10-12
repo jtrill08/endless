@@ -1,14 +1,4 @@
 /* styles.css */
-:root {
-    --background-light: #f7f7f7;
-    --background-dark: #121212;
-    --text-light: #000000;
-    --text-dark: #ffffff;
-    --container-background: #ffffff;
-    --border-color: #212121;
-    --peek-background: #f0f0f0;
-    --fact-card-background: #ffffff;
-}
 
 body {
     font-family: 'Lato', Arial, sans-serif;
@@ -309,6 +299,6 @@ footer p{
     @media (max-width: 768px) {
         .fact-container {
             font-size: 1.5vh; /* Adjust font size for smaller screens */
-            width: 80%; /* Use percentages to adapt to smaller screens */
+            width: 50%; /* Use percentages to adapt to smaller screens */
         }
     }
