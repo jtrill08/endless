@@ -85,67 +85,52 @@ function containsInterestingKeyword(fact, category) {
 
     // Keywords related to the new categories: Art, Science, History, Fashion, Geography, Zodiac, and Photography.
     const categoryKeywords = {
-        'Culture': [
+        'Arts': [
             'painter', 'illustrator', 'sculpture', 'architect', 'architectural style', 'architectural history', 'architectural marvels', 'architectural innovation', 
             'architectural traditions', 'novelist', 'film', 'pop culture','literature', 'musician', 'singer', 'composer',
              'music genre', 'concert', 'album', 'magazine', 'film director', 'movie industry', 
             'cinematic history', 'classic movie', 'film festival', 'cinematography', 'Renaissance art', 
-            'Baroque art', 'Rococo art', 'Neoclassical art', 'fairytale architecture', 'Romantic art', 'Impressionism', 'Expressionism', 
-            'Cubism', 'Surrealism', 'Storybook architecture', 'Abstract Expressionism', 'Pop Art', 'Minimalism', 'Conceptual Art', 'Bauhaus', 'Postmodernism', 'Islamic architecture', 
+            'Baroque art', 'Rococo art', 'Neoclassical art', 'Romantic art', 'Impressionism', 'Expressionism', 
+            'Cubism', 'Surrealism', 'Abstract Expressionism', 'Pop Art', 'Minimalism', 'Conceptual Art', 'Bauhaus', 'Postmodernism', 'Islamic architecture', 
             'Chinese architecture', 'Indian architecture', 'Mayan architectural', 'Greek architecture', 'Roman architectural', 'Gothic architectural', 
             'Byzantine architecture', 'Japanese architecture', 'African architecture', 
             'Indigenous architecture', 'Modernist architecture', 'Art Deco architecture', 'jewels', 'art deco',
-            'Mid-century modern', 'Contemporary architecture', 'classical music','dish','meal','cuisine','food',
+            'Mid-century modern', 'Contemporary architecture',
              'Architectural theory', 'Architectural criticism', 'Architectural preservation', 'vernacular architecture',
-              'vernacular style', 'vernacular materials', 'vernacular design','carnaval', 'carnival' ],
+              'vernacular style', 'vernacular materials', 'vernacular design' ],
         'Science': [
-            'science','virus','organism', 'technology', 'engineering', 'mathematics',
-            'biology', 'chemistry', 'physics', 'astronomy','gene','protein','cells','biological rhythms','chronobiology','chromosomes',
-            'species', 'archaic humans','plant', 'abiotic', 'biotic', 'decomposer', 'ecosystem', 'food web', 'nutrient cycling', 'Biodiversity', 'biomimicry', 'bio-inspired',
-            'biophilia', 'biomimetics', 'bioengineering', 'bionics', 'bio-utilization', 'Convergent evolution', 'Cross-pollination', 'experiment', 'Biotechnology', 'Taxonomy', 'Hydroponics', 'Embryology', 'Enzyme', 'Equilibrium', 'extinction', 'Homeostasis', 'Mitosis', 'DNA', 'isotope',
-            'computer science', 'information technology', 'innovation','circadian','nuclei','physiology','pathophysiology',
-            'invention', 'space mission', 'astronaut', 'NASA', 'space agency', 'planet exploration', 'celestial body', 'technological innovation', 'inventor', 'visionary', 'technology breakthrough', 'scientific breakthrough', 'Nobel laureate', 'physics discovery', 'chemistry breakthrough', 'medical discovery',
-            'Geology', 'Meteorology', 'Environmental Science', 'Neuroscience', 'Genetics', 'Botany', 'Zoology', 'Paleontology', 'Chemical Engineering', 'Quantum Physics', 'Astrobiology', 'Oceanography', 'Nanotechnology', 'Renewable Energy', 'Biomedical Engineering', 'Materials Science', 'Ecology', 'Climate Science', 'Cryptography', 'Particle Physics','physics theories','biology theories', 'chemistry theories', 'scientific','scientific concept','scientific theory',
-            'Cell Biology', 'Genomic Sequencing', 'Quantum Mechanics', 'Organic Chemistry', 'Theoretical Physics', 'Neuroplasticity', 'Molecular Biology', 'Atomic Structure', "Einstein's Theory of Relativity", 'Genetic Engineering', 'Quantum Computing', 'Evolutionary Biology', 'Chemical Reactions', 'Biomechanics', 'Particle Accelerators', 'Microbiology', 'Quantum Field Theory'],
+            'science', 'technology', 'engineering', 'mathematics',
+            'biology', 'chemistry', 'physics', 'astronomy',
+            'computer science', 'information technology', 'innovation', 
+            'invention', 'space mission', 'astronaut', 'NASA', 'space agency', 'planet exploration', 'celestial body', 'technological innovation', 'inventor', 'visionary', 'technology breakthrough', 'scientific breakthrough', 'Nobel laureate', 'physics discovery', 'chemistry breakthrough', 'medical discovery'
+        ],
         'Geography': [
-            'geography', 'places', 'earth', 'province','bodies of water',
-            'cities', 'continents', 'country', 'deserts',
+            'geography', 'places', 'earth', 'bodies of water',
+            'cities', 'continents', 'countries', 'deserts',
             'lakes', 'landforms', 'mountains', 'navigation',
-            'oceans', 'populated places', 'village', 'protected areas',
-            'regions', 'rivers', 'subterranea', 'Coastline', 'territories',
-            'towns', 'villages', 'famous landmarks', 'historical sites',
-            'architectural marvels', 'UNESCO World Heritage', 'cultural heritage',
-            'natural landscapes', 'geological formations', 'ecosystems', 'ecoregions', 'breathtaking views',
-            'natural phenomena','regional park', 'tourist attractions', 'local cuisine', 'cultural heritage', 'travel destinations', 'must-visit places', 'Amazon', 'region', 'landscapes', 'cultural treasures', 'waterfalls',
-             'beaches', 'territories', 'peninsulas', 'mountains', 'plains', 'landforms', 'hills', 'gorges', 'drainage basins', 'plates', 'valleys', 
-             'floodplains', 'glaciers', 'isthmuses', 'fjords', 'volcanoes', 'deserts', 'deltas',
-            'physical geography', 'piers', 'wetlands', 'continents', 'bays', 'archipelagos', 
-            'earthquakes', 'volcanic eruptions', 'tropical storms', 'tectonic plates', 'nutrient cycling',
-             'ecotourism', 'soil erosion', 'desertification', 'permafrost', 'tundra', 'caves', 'gabions', 'levees', 
-             'interlocking spurs', 'hydrographs', 'precipitation'],
+            'oceans', 'populated places', 'village','protected areas',
+            'regions', 'rivers', 'subterranea', 'territories',
+            'towns', 'villages', 'famous landmark', 'historical site', 
+            'architectural marvel', 'UNESCO World Heritage', 'cultural heritage',
+            'natural landscape', 'geological formation', 'ecosystem', 'ecoregion', 'breathtaking view',
+            'natural phenomenon', 'tourist attraction', 'local cuisine', 'cultural heritage', 'travel destination', 'must-visit place'
+        ],
         'History': [    
-            'made history','Historical Event', 'Timeline', 'Ancient Civilizations', 'World Wars', 'Historical Figures', 'Historical Documents', 'Revolutions', 'Dynasties', 'Historical Artifacts', 'Archaeology', 'Historical Landmarks', 'History of Science', 'History of Medicine', 'Industrial Revolution', 'Renaissance',
-            'Pharaohs', 'Pyramids', 'Nile River', 'Hieroglyphics', 'Papyrus', 'Ancient Egyptian Art',
-            'Greek City-States', 'Athens', 'Sparta', 'Alexander the Great', 'Greek Mythology', 'Acropolis',
-            'Julius Caesar', 'Colosseum', 'Roman Republic', 'Roman Architecture', 'Roman Law',
-            'Knights', 'Crusades', 'Feudalism', 'Gothic Cathedrals', 'Viking Age',
-            'Qin Dynasty', 'Han Dynasty', 'Great Wall of China', 'Confucianism', 'Chinese Inventions',
-            'Mali Empire', 'Great Zimbabwe', 'Axum', 'Songhai Empire', 'Mansa Musa',
-            'Mayan Calendar', 'Tikal', 'Chichen Itza', 'Mayan Hieroglyphs',
-            'Tenochtitlan', 'Aztec Religion', 'Hernan Cortes', 'Machu Picchu', 'Inca Road System', 'Quipu', 'Andean Civilization',
-            'Indus Valley Civilization', 'Maurya Empire', 'Gupta Empire', 'Buddhism', 'Hinduism',
-            'Hagia Sophia', 'Justinian I', 'Byzantine Art', 'Eastern Orthodox Church',
-            'Genghis Khan', 'Silk Road', 'Yurts', 'Khanates','protest',
-            'Samurai', 'Shogun', 'Bushido', 'Feudal Japan',
-            'Ethiopian Orthodox Tewahedo Church', 'Lalibela', 'Rock-Hewn Churches',
-            'The Crusades', 'The Reformation', 'The Enlightenment', 'Religious Wars', 'European Colonial Empires', 'Exploration', 'Impact on Indigenous Peoples',
-            'World War I', 'World War II', 'Holocaust', 'Treaty of Versailles',
-            'The Cold War', 'Cuban Missile Crisis', 'Berlin Wall', 'Proxy Wars',
-            'Leonardo da Vinci', 'Michelangelo', 'Humanism', 'Industrialization', 'Steam Engine', 'Urbanization', 'Factory System', 'African American Civil Rights', 'Martin Luther King Jr.', 'Rosa Parks',
-            'Independence Day', '20th Century History', 'Globalization', 'Digital Revolution', 'Space Race',
-            'Royal', 'dynasty of kings','Empire', 'Colonization', 'War', 'Treaty', 'indigenous', 'Colonies', 'Archaeology', 'Architectural History', 'Artifact', 'BC', 'BCE', 'Rich History'
-
-
+            'Historical Events',
+            'Timeline',
+            'Ancient Civilizations',
+            'World Wars',
+            'Historical Figures',
+            'Historical Documents',
+            'Revolutions',
+            'Dynasties',
+            'Historical Artifacts',
+            'Archaeology',
+            'Historical Landmarks',
+            'History of Science',
+            'History of Medicine',
+            'Industrial Revolution',
+            'Renaissance'
         ]
     };
 
@@ -322,11 +307,6 @@ function clearFactContainer() {
 
 let debounceTimer; // Add a debounce timer
 
-// JavaScript
-
-// ...
-
-// Add an event listener to handle category button clicks
 categoryButtons.forEach(button => {
     button.addEventListener('click', async () => {
         const newCategory = button.getAttribute('data-category');
@@ -357,9 +337,6 @@ categoryButtons.forEach(button => {
         }
     });
 });
-
-
-
 
 // Initial load
 loadNextFacts();
