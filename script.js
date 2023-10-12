@@ -18,11 +18,7 @@ async function fetchRandomFact(category, retryCount = 3) {
 
         let apiUrl = 'https://en.wikipedia.org/api/rest_v1/page/random/summary';
 
-        const response = await fetch(apiUrl, {
-            method: 'GET', // Set the HTTP method to GET
-            signal: abortController.signal,
-
-        });
+        const response = await fetch(apiUrl, { signal: abortController.signal });
 
         if (!response.ok) {
             if (response.status === 404) {
