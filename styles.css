@@ -67,7 +67,7 @@ body::-webkit-scrollbar {
 
 .fact-card {
     margin-bottom: 3.0vh;
-    height: 76.5vh;
+    min-height: 76.5vh;
     background-color:#212121;
     border-radius: 2.2vh;
     scroll-snap-align: start;
@@ -188,6 +188,11 @@ body::-webkit-scrollbar {
     display: none;
 }
 
+/* Hide the scrollbar for Firefox */
+.category-nav-container {
+    scrollbar-width: none;
+}
+
 .static-button {
     padding: 1vh 0vh 1vh 0vh; /* Add padding to the static button container */
     background-color: #121212;
@@ -298,3 +303,4 @@ footer p{
         margin-inline-start: 0px;
         margin-inline-end: 0px;
 }
+
