@@ -76,20 +76,20 @@ function containsInterestingKeyword(fact, category) {
     // Modify this function to check if the fact contains keywords related to the selected category.
     const lowercasedFact = fact.toLowerCase();
 
-    // Keywords related to the new categories: Art, Science, History, Fashion, Geography, Zodiac, and Photography.
+    // Keywords related to the new categories: Culture, Science, History, and Geography
     const categoryKeywords = {
         'Culture': [
-            'painter', 'illustrator', 'sculpture', 'architect', 'architectural style', 'architectural history', 'architectural marvels', 'architectural innovation', 
-            'architectural traditions', 'novelist', 'film', 'pop culture','popular culture','literature', 'musician', 'singer', 'composer',
-             'music genre', 'organic abstract', 'concert', 'album', 'magazine', 'film director', 'movie industry', 
-            'cinematic history', 'classic movie', 'film festival', 'cinematography', 'Renaissance art', 
-            'Baroque art', 'Rococo art', 'Neoclassical art', 'fairytale architecture', 'Romantic art', 'Impressionism', 'Expressionism', 
+            'painter', 'masterpiece','illustrator', 'sculpture', 'architect', 'architectural style', 'architectural history', 'architectural marvels', 'architectural innovation', 
+            'architectural traditions', 'novelist', 'film', 'pop culture','popular culture','literature','aesthetics', 'musician', 'singer', 'composer',
+             'music genre', 'organic abstract', 'concert', 'album', 'magazine', 'film director', 'movie industry', 'craftsmanship',
+            'cinematic history', 'classic movie','igloo', 'film festival', 'cinematography', 'Renaissance art', 'fashion trend',
+            'Baroque art', 'Rococo art', 'Neoclassical art', 'fashion designer', 'fairytale architecture', 'Romantic art', 'Impressionism', 'Expressionism', 
             'Cubism', 'Surrealism', 'Storybook architecture', 'Abstract Expressionism', 'Pop Art', 'Minimalism', 'Conceptual Art', 'Bauhaus', 'Postmodernism', 'Islamic architecture', 
-            'Chinese architecture', 'Indian architecture', 'Mayan architectural', 'Greek architecture', 'Roman architectural', 'Gothic architectural', 
+            'Chinese architecture', 'Indian architecture', 'Mayan architectural', 'traditional garment','traditional japanese garment','Greek architecture', 'Roman architectural', 'Gothic architectural', 
             'Byzantine architecture', 'Japanese architecture', 'African architecture', 'architecture of Africa','Architecture of India',
-            'Indigenous architecture', 'Modernist architecture', 'Art Deco architecture', 'jewels', 'art deco',
-            'Mid-century modern', 'Contemporary architecture', 'classical music','dish','meal','cuisine','food',
-             'Architectural theory', 'Architectural criticism', 'Architectural preservation', 'vernacular architecture',
+            'Indigenous architecture', 'Modernist architecture', 'Art Deco architecture', 'jewels', 'art deco','artisan', 'clothing',
+            , 'Mid-century modern', 'Contemporary architecture', 'classical music','dish','meal','cuisine','food',
+             'Architectural theory', 'Architectural criticism', 'fashion collections', 'fashion textile', 'Architectural preservation', 'vernacular architecture',
               'vernacular style', 'vernacular materials', 'vernacular design','carnaval', 'carnival' ],
         'Science': [
             'science','virus','organism', 'technology', 'engineering', 'mathematics',
@@ -117,26 +117,46 @@ function containsInterestingKeyword(fact, category) {
              'ecotourism', 'soil erosion', 'desertification', 'permafrost', 'tundra', 'caves', 'gabions', 'levees', 
              'interlocking spurs', 'hydrographs', 'precipitation'],
         'History': [    
-            'made history','historian','Historical Event', 'Timeline', 'Ancient Civilizations', 'World Wars', 'Historical Figures', 'Historical Documents', 'Revolutions', 'Dynasties', 'Historical Artifacts', 'Archaeology', 'Historical Landmarks', 'History of Science', 'History of Medicine', 'Industrial Revolution', 'Renaissance',
-            'Pharaohs', 'Pyramids', 'Nile River', 'Hieroglyphics', 'Papyrus', 'Ancient Egyptian Art',
+            'made history','historian','Historical Event', 'Timeline', 'Ancient Civilizations', 'World Wars', 'Historical Figures', 'Historical Documents', 'Revolutions',
+            'Dynasties', 'Historical Artifacts', 'Archaeology', 'Historical Landmarks', 'History of Science', 'History of Medicine', 'Industrial Revolution', 'Renaissance',
+            'Pharaohs', 'Pyramids', 'Nile River', 'Hieroglyphics', 'Papyrus', 'Ancient Egyptian Art','agricultural revolution',
             'Greek City-States', 'Athens', 'Sparta', 'Alexander the Great', 'Greek Mythology', 'Acropolis',
-            'Julius Caesar', 'Colosseum', 'Roman Republic', 'Roman Architecture', 'Roman Law',
-            'Knights', 'Crusades', 'Feudalism', 'Gothic Cathedrals', 'Viking Age',
+            'Julius Caesar', 'Colosseum', 'Roman Republic', 'Roman Architecture', 'Roman Law','golden age','britannia',
+            'Knights', 'Crusades', 'Feudalism', 'Gothic Cathedrals', 'Viking Age','historical records','triumph',
             'Qin Dynasty', 'Han Dynasty', 'Great Wall of China', 'Confucianism', 'Chinese Inventions',
-            'Mali Empire', 'Great Zimbabwe', 'Axum', 'Songhai Empire', 'Mansa Musa',
-            'Mayan Calendar', 'Tikal', 'Chichen Itza', 'Mayan Hieroglyphs',
+            'Mali Empire', 'empire','Great Zimbabwe', 'Axum', 'Songhai Empire', 'Mansa Musa','cultural dynamism','economic growth',
+            'Mayan Calendar', 'Tikal', 'Chichen Itza', 'Mayan Hieroglyphs','tudor','roaring twenties','social revolution',
             'Tenochtitlan', 'Aztec Religion', 'Hernan Cortes', 'Machu Picchu', 'Inca Road System', 'Quipu', 'Andean Civilization',
-            'Indus Valley Civilization', 'Maurya Empire', 'Gupta Empire', 'Buddhism', 'Hinduism',
-            'Hagia Sophia', 'Justinian I', 'Byzantine Art', 'Eastern Orthodox Church',
-            'Genghis Khan', 'Silk Road', 'Yurts', 'Khanates','protest',
-            'Samurai', 'Shogun', 'Bushido', 'Feudal Japan',
-            'Ethiopian Orthodox Tewahedo Church', 'Lalibela', 'Rock-Hewn Churches',
+            'Indus Valley Civilization', 'Maurya Empire', 'Gupta Empire', 'Buddhism', 'Hinduism','economic union',
+            'Hagia Sophia', 'Justinian I', 'Byzantine Art','economic history','french revolution','alliances'
+            ,'Genghis Khan', 'Silk Road', 'Yurts', 'Khanates','protest', 'economic boom','economic crisis','cult of personality',
+            'Samurai', 'Shogun', 'Bushido', 'Feudal Japan','historical event', 'battle of','tribes','president of','Gold Coast',
+            'Ethiopian Orthodox Tewahedo Church', 'Lalibela', 'Rock-Hewn Churches','great depression',
             'The Crusades', 'The Reformation', 'The Enlightenment', 'Religious Wars', 'European Colonial Empires', 'Exploration', 'Impact on Indigenous Peoples',
-            'World War I', 'World War II', 'Holocaust', 'Treaty of Versailles',
-            'The Cold War', 'Cuban Missile Crisis', 'Berlin Wall', 'Proxy Wars',
-            'Leonardo da Vinci', 'Michelangelo', 'Humanism', 'Industrialization', 'Steam Engine', 'Urbanization', 'Factory System', 'African American Civil Rights', 'Martin Luther King Jr.', 'Rosa Parks',
-            'Independence Day', '20th Century History', 'Globalization', 'Digital Revolution', 'Space Race',
-            'Royal', 'dynasty of kings','Empire', 'Colonization', 'War', 'Treaty', 'indigenous', 'Colonies', 'Archaeology', 'Architectural History', 'Artifact', 'BC', 'BCE', 'Rich History'
+            'World War I', 'World War II', 'Holocaust', 'Treaty of Versailles','dot-com bubble','peace prize','pan-african',
+            'The Cold War', 'Cuban Missile Crisis', 'Berlin Wall', 'Proxy Wars','archaeologist',
+            'Royal', 'dynasty of kings','Empire', 'Colonization', 'War', 'Treaty', 'indigenous', 'Colonies', 
+            'Archaeology', 'Architectural History', 'Artifact', 'BC', 'BCE', 'Rich History', 'fashion history','fashion movement',
+            'revolution','fashion collection','historical interpreation','historical preservation','historical city',
+            'the enlightenment','american revolution','Industrialization of Japan','atlantic slave trade',
+            ' Russian Revolution',' Civil Rights Movement ', 'space race','cold war', 'holocaust','acient',
+            'sub-saharan','transatlantic slave trade','traditional medicine','middle passage','triangular trade',
+            'pharaohs','Kandake','queen of sheba', 'empress','ancient kemet', 'nefertiti',
+            'yaa asantewa','akhenaten','emperor','menelik I','Oba Oduduwa','Ife Empire','Information Age',
+            'Berlin wall','arab spring','green revolution','internet revolution','digital revolution',
+            'Carthage','kingdom of kush','aksumite empire','ghana empire','zulu kingdom','songhai empire',
+            'sokoto caliphate','oyo empire','axum','aksum','benin bronze','benin empire', 'ethiopian empire',
+            'kanem-bornu empire', 'kongo kingdom','myth','mythology','sacred text','technology artifacts',
+            'artifacts','antiquities','stone age','bronze age','iron age','ice age','copper age','mesozoic era',
+            'cenozoic era','holocene epoch','pleistocene epoch', 'jurassic period','devonian period',
+            'cambrian period','neolithic age', 'Indus Valley Civilization', 'Mesopotamia, Ancient China', 'Maurya and Gupta Empire'
+            ,'roman empire','inca','mayan','medieval era','tudors','Mesoamerican','andean civilization',
+            'mongol empire','feudal japan','ottoman Empire', 'Mughal Empire', 'Ming Dynasties', 'Qing Dynasties', 'Tokugawa Japan',
+            'european colonisation','anti-slavery','scramble for africa','decolinsation',
+            'british raj','meiji restoration','chinese revolution','independence movements',
+            'post-colonial','rise of china','technological advancement','political change', 'economic change','world history','african history','key figure',
+            'excavations','discovery',
+
 
 
         ]
