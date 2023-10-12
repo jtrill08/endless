@@ -1,5 +1,4 @@
 /* styles.css */
-
 body {
     font-family: 'Lato', Arial, sans-serif;
     color: white;
@@ -18,7 +17,7 @@ body::-webkit-scrollbar {
 }
 
 .fact-container {
-    font-size: 2.0vh;
+    font-size: 0.9rem;
     font-weight: 400;
     text-align: center;
     width: 45vh;
@@ -201,7 +200,7 @@ body::-webkit-scrollbar {
     cursor: pointer;
     padding: 8px 16px;
     border-radius: 3vh; /* Add border-radius for rounded shape */
-    font-size: 1.7vh;
+    font-size: 0.7rem;
     transition: background-color 0.2s, color 0.2s, border-radius 0.2s; /* Add transitions */
     color: white;
     margin-right: 1vh; /* Add some spacing between home and category buttons */
@@ -213,7 +212,7 @@ body::-webkit-scrollbar {
     cursor: pointer;
     padding: 8px 16px;
     border-radius: 3vh; /* Add border-radius for rounded shape */
-    font-size: 1.7vh;
+    font-size: 0.7rem;
     transition: background-color 0.2s, color 0.2s, border-radius 0.2s; /* Add transitions */
     color: white;
     margin-right:1.2vh; /* Add some spacing between category buttons */
@@ -279,9 +278,8 @@ footer {
 
 /* Style the "Feedback" link */
 footer a {
-    color: #007AFF;
     color: white;
-    font-size: 1.5vh;
+    font-size: 0.7rem;
     text-decoration: none;
     margin-left: 5vh;
     margin-right: 5vh; /* Add right margin to increase spacing */
@@ -294,11 +292,3 @@ footer p{
         margin-inline-start: 0px;
         margin-inline-end: 0px;
 }
-
-    /* Media query for smaller screens */
-    @media (max-width: 768px) {
-        .fact-container {
-            font-size: 1.5vh; /* Adjust font size for smaller screens */
-            width: 50%; /* Use percentages to adapt to smaller screens */
-        }
-    }
