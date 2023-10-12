@@ -7,7 +7,7 @@ body {
     display: flex;
     flex-direction: column; /* Ensure flex children stack vertically */
     align-items: center; /* Center horizontally */
-    height: 100vh;
+    min-height: 100vh;
     background-color: #121212; /* Default to light mode background */
     overflow: hidden; /* Hide default scrollbar */
 }
@@ -25,7 +25,7 @@ body::-webkit-scrollbar {
     background-color: #121212;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
-    height: 83vh;
+    height: 60%;
     margin-top: 2vh; /* Add margin-top to separate it from the navigation bar */
 
 }
