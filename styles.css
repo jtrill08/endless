@@ -7,7 +7,7 @@ body {
     display: flex;
     flex-direction: column; /* Ensure flex children stack vertically */
     align-items: center; /* Center horizontally */
-    min-height: 100vh;
+    height: 100vh;
     background-color: #121212; /* Default to light mode background */
     overflow: hidden; /* Hide default scrollbar */
 }
