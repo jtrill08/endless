@@ -2,6 +2,7 @@ const factContainer = document.getElementById('fact-container');
 const categoryButtons = document.querySelectorAll('.category-button');
 let filterCategory = null; // Initialize with no filter
 let isLoadingFacts = false;
+
 const facts = [];
 let currentFactIndex = 0;
 const factsPerPage = 10; // Number of facts to load at once
@@ -20,10 +21,7 @@ async function fetchRandomFact(category, retryCount = 3) {
         const response = await fetch(apiUrl, {
             method: 'GET', // Set the HTTP method to GET
             signal: abortController.signal,
-            headers: {
-                'Accept-Encoding': 'gzip', // Add this header for compression
-                'User-Agent': 'YourAppName/1.0 (Contact: YourContactInfo)', // Add your User-Agent header here
-            },
+
         });
 
         if (!response.ok) {
