@@ -7,7 +7,7 @@ body {
     display: flex;
     flex-direction: column; /* Ensure flex children stack vertically */
     align-items: center; /* Center horizontally */
-    min-height: 100vh;
+    height: 100vh;
     background-color: #121212; /* Default to light mode background */
     overflow: hidden; /* Hide default scrollbar */
 }
@@ -25,7 +25,7 @@ body::-webkit-scrollbar {
     background-color: #121212;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
-    height: 83vh;
+    max-height: 83vh;
     margin-top: 2vh; /* Add margin-top to separate it from the navigation bar */
 
 }
@@ -164,6 +164,7 @@ body::-webkit-scrollbar {
     -ms-overflow-style: none; /* Hide scrollbar in Internet Explorer */
     scrollbar-width: none; /* Hide scrollbar in Firefox */
     background-color: #121212;
+    border-radius: 2vh;
     position: sticky;
     top: 0;
     margin-top: 2vh;
@@ -291,5 +292,4 @@ footer p{
         margin-block-end: 1vh;
         margin-inline-start: 0px;
         margin-inline-end: 0px;
-    
 }
