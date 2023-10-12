@@ -39,12 +39,6 @@ body::-webkit-scrollbar {
     height: 83vh;
     margin-top: 2vh; /* Add margin-top to separate it from the navigation bar */
 
-    /* Media query for smaller screens */
-@media (max-width: 768px) {
-    .fact-container {
-        font-size: 1.5vh; /* Adjust font size for smaller screens */
-        width: 80%; /* Use percentages to adapt to smaller screens */
-    }
 }
 
 .fact-text {
@@ -311,3 +305,10 @@ footer p{
         margin-inline-end: 0px;
 }
 
+    /* Media query for smaller screens */
+    @media (max-width: 768px) {
+        .fact-container {
+            font-size: 1.5vh; /* Adjust font size for smaller screens */
+            width: 80%; /* Use percentages to adapt to smaller screens */
+        }
+    }
