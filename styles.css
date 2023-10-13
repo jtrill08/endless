@@ -48,16 +48,19 @@ body::-webkit-scrollbar {
 }
 
 
+
 .max-image-size {
-    max-width: 100%;
-    max-height: 35%; /* Adjust the maximum height as needed */
+    max-width: 70%; /* Adjust as needed based on your container size */
+    max-height: 30%;
     object-fit: contain;
-    overflow: hidden; /* Add overflow property */
+    overflow: hidden;
+    margin: 0 auto 2vh;
+    display: block;
 }
 
 .fact-card {
-    margin-bottom: 3.0vh;
-    height: 76.5vh;
+    margin-bottom: 3.5vh;
+    min-height: 74.5vh;
     background-color:#212121;
     border-radius: 2.2vh;
     scroll-snap-align: start;
@@ -67,6 +70,8 @@ body::-webkit-scrollbar {
     overflow: hidden; /* Add overflow property */
     color: white;
 }
+
+
 
 
 .peek {
@@ -292,4 +297,43 @@ footer p{
         margin-block-end: 1vh;
         margin-inline-start: 0px;
         margin-inline-end: 0px;
+}
+
+
+@media (max-width: 768px) {
+
+    .category-nav-container {
+        margin-top: 2.5vh;
+        width: 40vh; /* Take full width of the container */
+    }
+
+    .fact-container {
+        font-size: 0.9rem;
+        font-weight: 400;
+        text-align: center;
+        width: 45vh;
+        padding-left: 0.5em;
+        background-color: #121212;
+        overflow-y: scroll;
+        scroll-snap-type: y mandatory;
+        max-height: 75vh;
+        margin-top: 2vh; /* Add margin-top to separate it from the navigation bar */
+    
+    }
+
+    .fact-card {
+        margin-bottom: 3.5vh;
+        min-height: 66vh;
+        background-color:#212121;
+        border-radius: 2.2vh;
+        scroll-snap-align: start;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; /* Adjust this property */
+        overflow: hidden; /* Add overflow property */
+        color: white;
+    }
+
+
+
 }
