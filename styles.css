@@ -316,14 +316,14 @@ footer p{
         background-color: #121212;
         overflow-y: scroll;
         scroll-snap-type: y mandatory;
-        max-height: 60vh;
+        max-height: 70vh;
         margin-top: 2vh; /* Add margin-top to separate it from the navigation bar */
     
     }
 
     .fact-card {
         margin-bottom: 3.5vh;
-        min-height: 55vh;
+        min-height: 61vh;
         background-color:#212121;
         border-radius: 2.2vh;
         scroll-snap-align: start;
