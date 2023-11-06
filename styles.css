@@ -303,7 +303,7 @@ footer p{
 @media (max-width: 768px) {
 
     .category-nav-container {
-        margin-top: 2.5vh;
+        margin-top: 3vh;
         width: 40vh; /* Take full width of the container */
     }
 
@@ -316,7 +316,7 @@ footer p{
         background-color: #121212;
         overflow-y: scroll;
         scroll-snap-type: y mandatory;
-        max-height: 70vh;
+        max-height: 77vh;
         margin-top: 2vh; /* Add margin-top to separate it from the navigation bar */
     
     }
