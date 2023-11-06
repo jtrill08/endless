@@ -304,7 +304,7 @@ footer p{
 
     .category-nav-container {
         margin-top: 3vh;
-        width: 40vh; /* Take full width of the container */
+        width: 43vh; /* Take full width of the container */
     }
 
     .fact-container {
@@ -316,7 +316,7 @@ footer p{
         background-color: #121212;
         overflow-y: scroll;
         scroll-snap-type: y mandatory;
-        max-height: 77vh;
+        max-height: 79vh;
         margin-top: 2vh; /* Add margin-top to separate it from the navigation bar */
     
     }
