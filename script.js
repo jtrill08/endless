@@ -301,26 +301,13 @@ async function loadNextFacts() {
     isLoadingFacts = false;
 }
 
-factContainer.addEventListener('scroll', () => {
-    const scrollPosition = factContainer.scrollTop;
-    const containerHeight = factContainer.clientHeight;
-    const contentHeight = factContainer.scrollHeight;
+// Add the event listener to the window
+window.addEventListener('scroll', () => {
+    const scrollPosition = window.scrollY;
+    const documentHeight = document.body.scrollHeight - window.innerHeight;
 
     // Calculate the scroll percentage (how far down the user has scrolled)
-    const scrollPercentage = (scrollPosition / (contentHeight - containerHeight)) * 100;
-
-    if (scrollPercentage >= 90) {
-        loadNextFacts(); // Load more facts when scrolled to 90% or more
-    }
-});
-
-factContainer.addEventListener('scroll', () => {
-    const scrollPosition = factContainer.scrollTop;
-    const containerHeight = factContainer.clientHeight;
-    const contentHeight = factContainer.scrollHeight;
-
-    // Calculate the scroll percentage (how far down the user has scrolled)
-    const scrollPercentage = (scrollPosition / (contentHeight - containerHeight)) * 100;
+    const scrollPercentage = (scrollPosition / documentHeight) * 100;
 
     if (scrollPercentage >= 90) {
         loadNextFacts();
