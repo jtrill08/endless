@@ -316,7 +316,7 @@ footer p{
         background-color: #121212;
         overflow-y: scroll;
         scroll-snap-type: y mandatory;
-        max-height: 76vh;
+        max-height: 75vh;
         margin-top: 2vh; /* Add margin-top to separate it from the navigation bar */
     
     }
