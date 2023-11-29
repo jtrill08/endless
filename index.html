@@ -1,40 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap" rel="stylesheet">
-    <title>Endless Wikipedia Facts</title>
+    <title>Random Artwork with Images</title>
+
+    <!-- Your existing head content here -->
+    <style>
+        .tab-content {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="category-nav-container">
-            <div class="static-button">
-                <button id="home-button">OnlyFacts</button>
-            </div>
-            <div class="scrollable-buttons">
-                <button class="category-button" data-category="Culture">Culture</button>
-                <button class="category-button" data-category="Science">Science</button>
-                <button class="category-button" data-category="Geography">Geography</button>
-                <button class="category-button" data-category="History">History</button>
-            </div>
-        </div>       
-    </header>
-    <main>
-        <article class="fact-container" id="fact-container">
-            <!-- Fact cards will be dynamically added here -->
-        </article>
-    </main>
-    <div class="peek" id="peek"></div>
-    <footer>
-        <div class="footer-content">
-            <p><a href="mailto:your@email.com">Feedback</a></p>
-            <p><a href="https://www.buymeacoffee.com/yourusername" target="_blank" rel="noopener noreferrer">Buy Me a Coffee</a></p>
+    <h1>Art Museums</h1>
+
+    <!-- Tabs for switching between museums -->
+    <div>
+        <button onclick="showTab('chicagoTab')">Chicago Museum</button>
+        <button onclick="showTab('princetonTab')">Princeton Museum</button>
+        <button onclick="showTab('clevelandTab')">Cleveland Museum</button>
+        <button onclick="showTab('vaTab')"> V&A Museum</button>
+    </div>
+
+    <!-- Chicago Museum Tab -->
+    <div id="chicagoTab" class="tab-content">
+        <h2>Chicago Museum Artworks</h2>
+        <div id="artworkContainer">
+            <!-- Artwork information will be displayed here -->
         </div>
-    </footer>               
-    <script src="script.js"></script>
+    </div>
+
+<!-- V&A Museum Tab -->
+<div id="princetonTab" class="tab-content">
+    <h2>Princeton Museum Object Info</h2>
+    <div id="artwork-container">
+        <!-- Artwork information will be displayed here -->
+    </div>
+</div>
+
+<!-- Cleveland Museum Tab -->
+<div id="clevelandTab" class="tab-content">
+    <h2>Cleveland Museum Object Info</h2>
+    <div id="artworkContainerCleveland">
+        <!-- Artwork information will be displayed here -->
+    </div>
+</div>
+
+    <!-- VA Museum Tab -->
+    <div id="vaTab" class="tab-content">
+        <h2>V&A Museum</h2>
+        <div id="artwork-containerVa">
+            <!-- Artwork information will be displayed here -->
+        </div>
+    </div>
+
+
+    <!-- Include JavaScript files for each museum -->
+    <script src="chicago.js"></script>
+    <script src="princeton.js"></script>
+    <script src="cleveland.js"></script>
+    <script src="va.js"></script>
+
+    <script>
+        // Function to show a specific tab
+        function showTab(tabId) {
+            // Hide all tabs
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Show the selected tab
+            const selectedTab = document.getElementById(tabId);
+            selectedTab.classList.add('active');
+        }
+    </script>
 </body>
 </html>
