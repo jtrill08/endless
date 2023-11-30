@@ -78,13 +78,20 @@ const artworkContainerVa = document.getElementById('artwork-containerVa');
 observer.observe(artworkContainerVa);
 
 // Add event listener for scrolling
-window.addEventListener('scroll', () => {
-    // Check if the user has scrolled to the bottom of the page
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-        // Load more artworks
+const vaTab = document.getElementById('vaTab');
+
+vaTab.addEventListener('scroll', () => {
+    // Calculate the scroll percentage
+    const scrollPercentage = (vaTab.scrollTop + vaTab.clientHeight) / vaTab.scrollHeight * 100;
+
+    // Check if the user has scrolled to 80% from the bottom of the Chicago tab content
+    if (scrollPercentage >= 80) {
+        // Load more artworks for Chicago
+        console.log('Fetched from Chicago');
         fetchAndDisplayObjectWithImage();
     }
 });
+
 
 // Load initial artworks
 fetchAndDisplayObjectWithImage();
