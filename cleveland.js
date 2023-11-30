@@ -1,65 +1,83 @@
-const apiEndpointCleveland = 'https://api.artic.edu/api/v1/artworks';
-const iiifBaseUrlCleveland = 'https://www.artic.edu/iiif/2';
+document.addEventListener('DOMContentLoaded', function () {
+    getRandomArtworksCleveland();
+});
 
-const artworkContainerCleveland = document.getElementById('artworkContainerCleveland');
-let displayedArtworkIdsCleveland = [];
-
-// Call the function to get and display artworks on page load
-getRandomArtworks();
-
-function getRandomArtworks() {
-    // Generate a random page number
-    const randomPage = Math.floor(Math.random() * 10295) + 1;
-
-    console.log('Fetching artworks from page:', randomPage);
-
-    fetch(`${apiEndpointCleveland}?page=${randomPage}`)
+function getRandomArtworksCleveland() {
+    fetch('https://openaccess-api.clevelandart.org/api/artworks/?format=json&has_image=1')
         .then(response => response.json())
         .then(data => {
-            const artworks = data.data;
-
-            // Filter the artworks to include only those with an image_id and not already displayed
-            const artworksWithImages = artworks.filter(artwork => artwork.image_id && !displayedArtworkIds.includes(artwork.id));
-
-            // Shuffle the array to get random artworks
-            const shuffledArtworks = shuffleArray(artworksWithImages);
-
-            // Display the artworks
-            shuffledArtworks.forEach(artwork => {
-                displayedArtworkIdsCleveland.push(artwork.id); // Add displayed artwork to the list
-                displayArtworkCleveland(artwork);
+            const randomArtworks = [];
+            for (let i = 0; i < 3; i++) {
+                const randomIndex = Math.floor(Math.random() * data.data.length);
+                const randomArtwork = data.data[randomIndex];
+                randomArtworks.push(fetch(`https://openaccess-api.clevelandart.org/api/artworks/${randomArtwork.id}`)
+                    .then(response => response.json())
+                    .then(data => data.data)
+                );
+            }
+            return Promise.all(randomArtworks);
+        })
+        .then(artworks => {
+            const artworkContainerCleveland = document.getElementById('artworkContainerCleveland');
+            artworks.forEach(artwork => {
+                const artworkInfo = createArtworkElement(artwork);
+                artworkContainerCleveland.appendChild(artworkInfo);
             });
         })
         .catch(error => {
-            console.error('Error:', error);
+            console.error('Error fetching artworks:', error);
         });
 }
 
-function displayArtworkCleveland(artwork) {
-    const artworkDiv = document.createElement('div');
-    artworkDiv.innerHTML = `
-        <img src="${iiifBaseUrlCleveland}/${artwork.image_id}/full/843,/0/default.jpg" alt="Artwork">
-        <p>Title: ${artwork.title}</p>
-        <p>Artist: ${artwork.artist_display}</p>
-    `;
-    artworkContainerCleveland.appendChild(artworkDiv);
-}
+function createArtworkElement(artwork) {
+    const artworkInfo = document.createElement('div');
+    artworkInfo.classList.add('artwork-info');
 
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
+    const titleElement = document.createElement('p');
+    titleElement.innerHTML = `<strong>Title:</strong> ${artwork.title}`;
+    artworkInfo.appendChild(titleElement);
+
+    const artistElement = document.createElement('p');
+    artistElement.innerHTML = `<strong>Artist:</strong> ${(artwork.creators && artwork.creators.length > 0) ? artwork.creators[0].description : 'Unknown Artist'}`;
+    artworkInfo.appendChild(artistElement);
+
+    const dateElement = document.createElement('p');
+    dateElement.innerHTML = `<strong>Date:</strong> ${artwork.creation_date}`;
+    artworkInfo.appendChild(dateElement);
+
+    const mediumElement = document.createElement('p');
+    mediumElement.innerHTML = `<strong>Medium:</strong> ${artwork.type}`;
+    artworkInfo.appendChild(mediumElement);
+
+    const descriptionElement = document.createElement('p');
+    descriptionElement.innerHTML = `<strong>Description:</strong> ${artwork.description}`;
+    artworkInfo.appendChild(descriptionElement);
+
+    const didyouknowElement = document.createElement('p');
+    didyouknowElement.innerHTML = `<strong>Did you know:</strong> ${artwork.did_you_know}`;
+    artworkInfo.appendChild(didyouknowElement);
+
+    if (artwork.images && artwork.images.web) {
+        const imageElement = document.createElement('img');
+        imageElement.src = artwork.images.web.url;
+        imageElement.alt = 'Artwork';
+        artworkInfo.appendChild(imageElement);
     }
-    return array;
+
+    return artworkInfo;
 }
 
-// Add event listener for scrolling
-window.addEventListener('scroll', () => {
-    // Check if the user has scrolled to the bottom of the page
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-        // Load more artworks
-        getRandomArtworks();
+// Cleveland.js
+const clevelandTab = document.getElementById('clevelandTab');
+
+clevelandTab.addEventListener('scroll', () => {
+    // Calculate the scroll percentage
+    const scrollPercentage = (clevelandTab.scrollTop + clevelandTab.clientHeight) / clevelandTab.scrollHeight * 100;
+
+    // Check if the user has scrolled to 80% from the bottom of the Cleveland tab content
+    if (scrollPercentage >= 80) {
+        // Load more artworks for Cleveland
+        console.log('Fetched from Cleveland');
+        getRandomArtworksCleveland();
     }
 });
-
-console.log('Fetched from Cleveland:'); 
