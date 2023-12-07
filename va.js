@@ -1,13 +1,24 @@
+// Function to debounce a callback function
+function debounce(callback, delay) {
+    let timeoutId;
+    return function () {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+            callback.apply(this, arguments);
+        }, delay);
+    };
+}
   // Function to generate a random object ID
-  function getRandomObjectID() {
+  function getRandomObjectIDVa() {
     // Generate a random object ID between 1 and 1000000 (adjust the range as needed)
     return Math.floor(Math.random() * 1000000) + 1;
 }
 
 // Function to fetch and display object data with an image
+// Function to fetch and display object data with an image
 function fetchAndDisplayObjectWithImage() {
-    const randomObjectID = getRandomObjectID();
-    const apiUrlVa = `https://api.vam.ac.uk/v2/museumobject/O${randomObjectID}`;
+    const randomObjectIDVa = getRandomObjectIDVa();
+    const apiUrlVa = `https://api.vam.ac.uk/v2/museumobject/O${randomObjectIDVa}`;
 
     // Fetch data from the API
     fetch(apiUrlVa)
@@ -31,14 +42,16 @@ function fetchAndDisplayObjectWithImage() {
 
                 // Create HTML elements for the artwork
                 const artworkDivVa = document.createElement('div');
-                artworkDivVa.classList.add('artwork-containerVa');
+                artworkDivVa.classList.add('art-card');
                 artworkDivVa.innerHTML = `
-                    <img src="${thumbnailUrl}" alt="Object Image">
-                    <p>Title: ${objectTitle}</p>
-                    <p>Description: ${objectDescription}</p>
+                    <div class="artInfo">
+                            <img class="artImage" src="${thumbnailUrl}" alt="Object Image">
+                            <p>Title: ${objectTitle}</p>
+                            <p>Description: ${objectDescription}</p>
+                    </div>
                 `;
 
-                // Append the artwork to the container
+                // Append the artwork card to the container
                 artworkContainerVa.appendChild(artworkDivVa);
             } else {
                 // If the object doesn't have an image, retry with another object
@@ -51,6 +64,7 @@ function fetchAndDisplayObjectWithImage() {
             fetchAndDisplayObjectWithImage();
         });
 }
+
 
 // Function to handle intersection observer events
 function handleIntersection(entries, observer) {
@@ -77,20 +91,25 @@ const artworkContainerVa = document.getElementById('artwork-containerVa');
 // Start observing the container
 observer.observe(artworkContainerVa);
 
-// Add event listener for scrolling
+// Add event listener for scrolling with debouncing
 const vaTab = document.getElementById('vaTab');
 
-vaTab.addEventListener('scroll', () => {
+// Define the debounced version of the scroll handler
+const debouncedScrollHandler = debounce(() => {
     // Calculate the scroll percentage
     const scrollPercentage = (vaTab.scrollTop + vaTab.clientHeight) / vaTab.scrollHeight * 100;
 
-    // Check if the user has scrolled to 80% from the bottom of the Chicago tab content
+    // Check if the user has scrolled to 80% from the bottom of the VA tab content
     if (scrollPercentage >= 80) {
-        // Load more artworks for Chicago
-        console.log('Fetched from Chicago');
+        // Load more artworks for VA
+        console.log('Fetched from VA');
         fetchAndDisplayObjectWithImage();
     }
-});
+}, 300); // Adjust the delay (in milliseconds) according to your needs
+
+// Add the debounced scroll event listener
+vaTab.addEventListener('scroll', debouncedScrollHandler);
+
 
 
 // Load initial artworks
