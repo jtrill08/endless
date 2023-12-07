@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <title>Random Artwork with Images</title>
-
+    <link rel="stylesheet" href="styles.css">
     <!-- Your existing head content here -->
     <style>
         .tab-content {
@@ -15,55 +15,68 @@
     </style>
 </head>
 <body>
-    <h1>Art Museums</h1>
 
     <!-- Tabs for switching between museums -->
-    <div>
-        <button onclick="showTab('chicagoTab')">Chicago Museum</button>
-        <button onclick="showTab('princetonTab')">Princeton Museum</button>
-        <button onclick="showTab('clevelandTab')">Cleveland Museum</button>
-        <button onclick="showTab('vaTab')"> V&A Museum</button>
+    <div class="header">
+        <div class="left">
+            <div class="name">PocketMuse</div>
+        </div>
+        <div class="right">
+            <button onclick="showTab('chicagoTab')" data-tab="chicagoTab">Chicago Museum</button>
+            <button onclick="showTab('princetonTab')" data-tab="princetonTab">Princeton Museum</button>
+            <button onclick="showTab('clevelandTab')" data-tab="clevelandTab">Cleveland Museum</button>
+            <button onclick="showTab('vaTab')" data-tab="vaTab">V&A Museum</button>
+            <button onclick="showTab('metTab')" data-tab="metTab">Met Museum</button>            
+        </div>
     </div>
 
     <!-- Chicago Museum Tab -->
-    <div id="chicagoTab" class="tab-content" style="height: 50vh; overflow-y: auto;">
-        <h2>Chicago Museum Artworks</h2>
+    <div id="chicagoTab" class="tab-content active" id="fact-container">
         <div id="artworkContainer">
             <!-- Artwork information will be displayed here -->
         </div>
     </div>
 
-<!-- V&A Museum Tab -->
-<div id="princetonTab" class="tab-content" style="height: 50vh; overflow-y: auto;">
-    <h2>Princeton Museum Object Info</h2>
-    <div id="artwork-container">
-        <!-- Artwork information will be displayed here -->
+    <!-- V&A Museum Tab -->
+    <div id="princetonTab" class="tab-content">
+        <div id="artwork-container">
+            <!-- Artwork information will be displayed here -->
+        </div>
+        <div id="loadingMessage" style="display: none;">Loading...</div>
     </div>
-</div>
 
-<!-- Cleveland Museum Tab -->
-<div id="clevelandTab" class="tab-content" style="height: 50vh; overflow-y: auto;">
-    <h2>Cleveland Museum Object Info</h2>
-    <div id="artworkContainerCleveland">
-        <!-- Artwork information will be displayed here -->
+    <div id="clevelandTab" class="tab-content">
+        <div id="artworkContainerCleveland">
+            <!-- Artwork information will be displayed here -->
+        </div>
     </div>
-</div>
 
     <!-- VA Museum Tab -->
-    <div id="vaTab" class="tab-content" style="height: 50vh; overflow-y: auto;">
-        <h2>V&A Museum</h2>
+    <div id="vaTab" class="tab-content">
         <div id="artwork-containerVa">
             <!-- Artwork information will be displayed here -->
         </div>
     </div>
 
+    <!-- Met Museum Tab -->
+    <div id="metTab" class="tab-content">
+        <div id="art-containerMet">
+            <!-- Artwork information will be displayed here -->
+        </div>
+    </div>
 
+    <footer>
+        <div class="footer-content">
+            <p><a href="mailto:nbihstudios@gmail.com">Feedback</a></p>
+            <p><a href="https://www.buymeacoffee.com/nbihstudios" target="_blank" rel="noopener noreferrer">Buy Me a Coffee</a></p>
+        </div>
+    </footer>               
     <!-- Include JavaScript files for each museum -->
     <script src="chicago.js"></script>
-
     <script src="princeton.js"></script>
     <script src="cleveland.js"></script>
     <script src="va.js"></script>
+    <script src="met.js"></script>
 
     <script>
         // Function to show a specific tab
@@ -71,11 +84,25 @@
             // Hide all tabs
             const tabs = document.querySelectorAll('.tab-content');
             tabs.forEach(tab => tab.classList.remove('active'));
-
+    
+            // Remove underline from all buttons
+            const buttons = document.querySelectorAll('.right button');
+            buttons.forEach(button => button.classList.remove('active'));
+    
             // Show the selected tab
             const selectedTab = document.getElementById(tabId);
             selectedTab.classList.add('active');
+    
+            // Underline the text of the clicked button
+            const clickedButton = document.querySelector(`button[data-tab="${tabId}"]`);
+            clickedButton.classList.add('active');
         }
+    
+        // Automatically show the Chicago Museum tab on load
+        window.addEventListener('load', function () {
+            showTab('chicagoTab');
+        });
     </script>
+    
 </body>
 </html>
